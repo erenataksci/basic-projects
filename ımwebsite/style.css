@@ -1,0 +1,635 @@
+/* =========================================
+   1. RESET VE TEMEL AYARLAR
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+b, strong {
+    font-weight: 400;
+    color: #b5a48b;
+    font-style: italic;
+}
+
+/* =========================================
+   2. NAVİGASYON (ÜST MENÜ)
+   ========================================= */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 45px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #b5a48b;
+}
+
+/* =========================================
+   3. GİRİŞ EKRANI (HERO)
+   ========================================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fdfdfd;
+}
+
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(50px, 8vw, 90px);
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    color: #111;
+}
+
+.hero p {
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    margin-top: 120px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #aaa;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(5px); }
+    100% { opacity: 0.5; transform: translateY(0); }
+}
+
+/* =========================================
+   4. PROJELER VİTRİNİ (WERKE)
+   ========================================= */
+#werke {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: #ccc;
+    margin: 150px 0 100px 0;
+    text-transform: uppercase;
+}
+
+.project-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 85vh;
+    margin-bottom: 120px;
+    gap: 80px;
+    opacity: 0;
+    transform: translateY(100px) scale(0.96);
+    transition: opacity 0.4s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-block.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.project-block.alternate {
+    flex-direction: row-reverse;
+}
+
+.project-info {
+    flex: 1;
+    max-width: 500px;
+}
+
+.tag {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #b5a48b;
+    display: block;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.project-info h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+}
+
+.project-info p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 45px;
+    font-weight: 300;
+}
+
+.details-link {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 8px;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.details-link:hover {
+    color: #b5a48b;
+    border-color: #b5a48b;
+    padding-left: 10px;
+}
+
+/* JS ile çakışan transition kodu buradan kaldırıldı */
+.project-image-box {
+    flex: 1.2;
+    height: 600px;
+    background: #f8f9fa;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.image-placeholder {
+    font-size: 40px;
+    opacity: 0.2;
+}
+
+/* =========================================
+   5. ALT BİLGİ (FOOTER)
+   ========================================= */
+footer {
+    padding: 100px 20px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #999;
+    border-top: 1px solid #f5f5f5;
+}
+
+/* =========================================
+   6. MOBİL UYUM (Küçük Ekranlar İçin)
+   ========================================= */
+@media (max-width: 960px) {
+    nav {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+    }
+
+    .project-block, .project-block.alternate {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        margin-bottom: 150px;
+    }
+
+    .project-info {
+        max-width: 100%;
+    }
+
+    .project-image-box {
+        width: 100%;
+        height: 400px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+}
+
+/* =========================================
+   7. JS EFEKTLERİ: TERMINAL & 3D TILT
+   ========================================= */
+
+.terminal-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    color: #b5a48b;
+    margin-top: 30px;
+    letter-spacing: 2px;
+    height: 15px;
+    text-transform: uppercase;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    background-color: #b5a48b;
+    margin-left: 5px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+/* =========================================
+   8. ÜBER MICH (HAKKIMDA) BÖLÜMÜ
+   ========================================= */
+.about-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 150px 40px;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.about-image-box {
+    flex: 1;
+    height: 500px;
+    background: #f8f9fa;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.about-image-box::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid #b5a48b;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.about-image-box:hover::before {
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+}
+
+.about-content {
+    flex: 1.2;
+}
+
+.about-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.about-title {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #b5a48b;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.about-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.skills-grid span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    border: 1px solid #eee;
+    color: #555;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   9. KONTAKT (İLETİŞİM) BÖLÜMÜ
+   ========================================= */
+.contact-section {
+    background-color: #fcfcfc;
+    padding: 20px 40px 150px 40px;
+    border-top: 1px solid #f5f5f5;
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-container h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.contact-container p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.input-row {
+    display: flex;
+    gap: 40px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom-color: #b5a48b;
+}
+
+.submit-btn {
+    background: transparent;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 18px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
+
+/* Mobil Uyumlu Hakkımda ve İletişim */
+@media (max-width: 960px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .about-image-box {
+        width: 100%;
+        height: 400px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .skills-grid {
+        justify-content: center;
+    }
+}
+
+
+/* =========================================
+   10. ALT SAYFA (DETAY) TASARIMI
+   ========================================= */
+.detail-page {
+    background-color: #fafafa;
+}
+
+.detail-hero {
+    padding: 200px 40px 100px 40px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-hero .tag {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.detail-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 65px);
+    font-weight: 400;
+    color: #111;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    line-height: 1.1;
+}
+
+.detail-hero p {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.article-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 80px 40px;
+}
+
+.article-content {
+    margin-bottom: 70px;
+}
+
+.article-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.article-content p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+/* Teknik Tablo Tasarımı */
+.table-responsive {
+    overflow-x: auto;
+    margin: 40px 0;
+}
+
+.technical-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.technical-table th, .technical-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.technical-table th {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    background-color: #f8f9fa;
+}
+
+.technical-table td {
+    color: #555;
+    font-weight: 300;
+}
+
+/* Teknik Liste Tasarımı */
+.technical-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 30px;
+}
+
+.technical-list li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    font-weight: 300;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.technical-list li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: #b5a48b;
+    font-size: 18px;
+    top: -2px;
+}
+
+.technical-list li strong {
+    color: #1a1a1a;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.action-section {
+    text-align: center;
+    margin-top: 100px;
+    padding-top: 50px;
+    border-top: 1px solid #f0f0f0;
+}
