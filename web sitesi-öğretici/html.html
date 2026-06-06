@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Öğreniyorum - Kapsamlı Rehber</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="temaBtn">Koyu Modu Aç</button>
+
+<div class="page-container">
+
+    <aside class="sidebar">
+        <h2>HTML Konuları</h2>
+        <ul>
+            <li><a href="#" class="topic-link active" data-topic="giris">Giriş: HTML Nedir?</a></li>
+            <li><a href="#" class="topic-link" data-topic="anatomi">Bir HTML Elementinin Anatomisi</a></li>
+            <li><a href="#" class="topic-link" data-topic="etiketler">Temel Metin Etiketleri</a></li>
+            <li><a href="#" class="topic-link" data-topic="nitelikler">Nitelikler (Attributes)</a></li>
+            <li><a href="#" class="topic-link" data-topic="blok-inline">Blok ve Satır İçi Elementler</a></li>
+            <li><a href="#" class="topic-link" data-topic="listeler">Listeler (ul, ol, dl)</a></li>
+            <li><a href="#" class="topic-link" data-topic="linkler-resimler">Linkler ve Resimler</a></li>
+            <li><a href="#" class="topic-link" data-topic="tablolar">Tablolar</a></li>
+            <li><a href="#" class="topic-link" data-topic="formlar">Formlar</a></li>
+            <li><a href="#" class="topic-link" data-topic="multimedya">Multimedya (Video, Ses, Iframe)</a></li>
+            <li><a href="#" class="topic-link" data-topic="semantik">Semantik HTML</a></li>
+            <li><a href="#" class="topic-link" data-topic="head">Head Bölümü Detayları</a></li>
+            <li><hr></li>
+            <li class="back-button"><a href="index.html">Ana Sayfaya Dön</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="content-section active" data-topic="giris">
+            <h1>Giriş: HTML Nedir ve Ne İşe Yarar?</h1>
+            <p class="intro">
+                HTML (HyperText Markup Language - Hiper Metin İşaretleme Dili), bir web sayfasının içeriğini ve yapısını tanımlayan standart dildir.
+                Gördüğünüz her web sitesinin temelinde HTML kodları yatar. O, bir web sayfasının kaba iskeletidir.
+            </p>
+
+            <h3>Kavramları Parçalara Ayıralım: HyperText ve Markup</h3>
+            <ul>
+                <li><strong>HyperText (Hiper Metin):</strong> Normal bir metinden farklı olarak, içinde başka sayfalara veya kaynaklara bağlantılar (linkler) barındıran metindir. İnterneti internet yapan, sayfalar arasında gezinmemizi sağlayan temel konsept budur.</li>
+                <li><strong>Markup Language (İşaretleme Dili):</strong> Bir metnin nasıl yapılandırılacağını ve nasıl görüntülenmesi gerektiğini belirleyen özel "işaretler" veya "etiketler" (tags) kullanan bir dildir. HTML, tarayıcıya "Bu metni başlık yap", "Bu metni paragraf yap", "Buraya bir resim koy" gibi komutlar vermek için bu işaretleme etiketlerini kullanır.</li>
+            </ul>
+
+            <p><strong>Önemli Not:</strong> HTML bir programlama dili değildir. Çünkü mantıksal işlemler (eğer-ise, döngüler vb.) yapmaz; sadece içeriği tanımlar ve yapılandırır.</p>
+
+            <hr>
+
+            <h3>Ev İnşa Etme Analojisi (Detaylı Versiyon)</h3>
+            <p>
+                Bir web sitesi yapmayı, bir ev inşa etmeye benzetebiliriz. Bu analoji, üç temel web teknolojisinin görev dağılımını anlamak için mükemmeldir:
+            </p>
+            <ul>
+                <li><strong>1. HTML (İskelet):</strong> HTML, o evin temelidir, taşıyıcı kolonlarıdır, duvarlarıdır, odalarıdır. Nerede bir mutfak, nerede bir banyo olacağını, kapıların ve pencerelerin yerini HTML ile belirlersiniz. Sağlam bir iskelet olmadan, üzerine boya süremez veya elektrik tesisatı döşeyemezsiniz.</li>
+                <li><strong>2. CSS (Dekorasyon):</strong> CSS (Cascading Style Sheets), o evin duvarlarının rengidir, parkelerin türüdür, mobilyaların yerleşimidir. Evin güzel, estetik ve yaşanılır görünmesini sağlayan her türlü görsel detayı CSS ile yaparsınız.</li>
+                <li><strong>3. JavaScript (İşlevsellik):</strong> JavaScript ise o evin elektrik, su ve doğalgaz tesisatıdır. Düğmeye basınca ışıkların yanmasını, musluğu çevirince suyun akmasını, kapı zilinin çalmasını sağlayan işlevselliktir. Sayfadaki butonların çalışması, formların gönderilmesi gibi tüm dinamik olaylar JavaScript ile kontrol edilir.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Temel Bir HTML Sayfasının Anatomisi</h3>
+            <p>Her HTML dosyası belirli temel etiketleri içermelidir. Bu standart yapı, "boilerplate" olarak adlandırılır.</p>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="tr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sayfa Başlığı&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Merhaba Dünya!&lt;/h1&gt;
+    &lt;p&gt;Bu benim ilk web sayfam.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <h4>Peki bu etiketler tam olarak ne anlama geliyor?</h4>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code>: Tarayıcıya "Dikkat, bu belge modern bir HTML5 belgesidir" diyen bir bildirimdir. Her zaman en üstte olmalıdır.</li>
+                <li><code>&lt;html lang="tr"&gt;</code>: Tüm sayfanın kök elementidir. Diğer tüm HTML etiketleri bunun içinde yer alır. <code>lang="tr"</code> niteliği, sayfanın ana dilinin Türkçe olduğunu belirtir.</li>
+                <li><code>&lt;head&gt;</code>: Bu bölüm, sayfa hakkında tarayıcı için yazılmış meta bilgileri içerir. Bu kısımdaki hiçbir şey doğrudan ekranda görünmez (<code>&lt;title&gt;</code> hariç).</li>
+                <li><code>&lt;meta charset="UTF-8"&gt;</code>: Belgenin karakter kodlamasını belirtir. <code>UTF-8</code>, Türkçe karakterler (ç, ğ, ş, ı, ü) dahil olmak üzere evrensel bir standarttır. Bu satır olmazsa Türkçe karakterler bozuk görünebilir.</li>
+                <li><code>&lt;title&gt;</code>: Tarayıcı sekmesinde görünen sayfa başlığını belirtir. Arama motoru sonuçlarında da bu başlık görünür.</li>
+                <li><code>&lt;body&gt;</code>: Sitenin can damarıdır. Başlıklar, paragraflar, resimler, linkler gibi kullanıcının ekranda gördüğü **tüm** içerik bu etiketlerin arasına yazılır.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="anatomi">
+            <h2>Bir HTML Elementinin Anatomisi</h2>
+            <p>HTML, "elementlerden" oluşur. Bir elementi, bir içeriği tanımlayan açılış etiketi, içeriğin kendisi ve kapanış etiketi olarak düşünebiliriz.</p>
+            <img src="https://i.ibb.co/9v0F248/html-element-anatomy.png" alt="HTML Element Anatomisi" style="width:100%; max-width:600px; background: white; padding: 10px; border-radius: 8px;">
+
+            <ul>
+                <li><strong>1. Açılış Etiketi (Opening Tag):</strong> Elementin nerede başladığını ve ne tür bir element olduğunu belirtir. <code>&lt;p&gt;</code> (paragraf) veya <code>&lt;h1&gt;</code> (başlık) gibi.</li>
+                <li><strong>2. İçerik (Content):</strong> Elementin içinde yer alan, kullanıcının gördüğü metin, resim veya diğer elementlerdir.</li>
+                <li><strong>3. Kapanış Etiketi (Closing Tag):</strong> Elementin nerede bittiğini belirtir. Açılış etiketinin aynısıdır ancak başında bir bölü (<code>/</code>) işareti bulunur: <code>&lt;/p&gt;</code> veya <code>&lt;/h1&gt;</code>.</li>
+            </ul>
+
+            <h3>Boş (Empty) Elementler</h3>
+            <p>Bazı elementler bir içeriği sarmalamaz, kendi başlarına bir işlev görürler. Bu yüzden kapanış etiketleri yoktur. Bunlara "boş elementler" (empty elements) veya "kendi kendini kapatan etiketler" denir.</p>
+            <p>En yaygın örnekler:</p>
+            <ul>
+                <li><code>&lt;img src="resim.jpg" alt="açıklama"&gt;</code>: Sayfaya bir resim ekler.</li>
+                <li><code>&lt;br&gt;</code>: Bir satır atlaması (break) yapar.</li>
+                <li><code>&lt;hr&gt;</code>: Yatay bir çizgi (horizontal rule) çeker.</li>
+                <li><code>&lt;input type="text"&gt;</code>: Bir form giriş alanı oluşturur.</li>
+                <li><code>&lt;link rel="stylesheet" href="style.css"&gt;</code>: Bir dış kaynağı (CSS dosyası gibi) bağlar.</li>
+            </ul>
+
+            <h3>İç İçe Elementler (Nesting)</h3>
+            <p>HTML elementlerini birbirinin içine yerleştirebilirsiniz. Buna "nesting" (yuvalama) denir.</p>
+            <pre><code>&lt;p&gt;
+  Bu bir paragraf.
+  &lt;strong&gt;Bu kısım ise kalın&lt;/strong&gt;
+  ve bu da normal metin.
+&lt;/p&gt;</code></pre>
+            <p>Burada <code>&lt;strong&gt;</code> elementi, <code>&lt;p&gt;</code> elementinin içine "yuvalanmıştır". Bu, HTML'in temel yapı taşıdır.</p>
+        </div>
+
+        <div class="content-section" data-topic="etiketler">
+            <h2>Temel Metin Etiketleri</h2>
+            <p>HTML'de içeriği oluşturmak ve yapılandırmak için yüzlerce etiket vardır. Ancak başlangıçta aşağıdaki temel metin etiketlerini bilmek yeterlidir.</p>
+
+            <h3>1. Başlıklar: <code>&lt;h1&gt;</code> ... <code>&lt;h6&gt;</code></h3>
+            <p>Başlıklar, içerik hiyerarşisini belirler. <code>&lt;h1&gt;</code> en önemli (ana başlık), <code>&lt;h6&gt;</code> ise en az önemli başlıktır. Bir sayfada genellikle sadece bir tane <code>&lt;h1&gt;</code> olması, SEO (arama motoru optimizasyonu) için en iyi pratiktir.</p>
+            <pre><code>&lt;h1&gt;Ana Başlık&lt;/h1&gt;
+&lt;h2&gt;Alt Başlık&lt;/h2&gt;
+&lt;h3&gt;Daha Alt Başlık&lt;/h3&gt;</code></pre>
+
+            <h3>2. Paragraf: <code>&lt;p&gt;</code></h3>
+            <p>Metin bloklarını sarmalamak için kullanılan en temel etikettir. Tarayıcılar, paragraflar arasına otomatik olarak bir miktar boşluk (margin) ekler.</p>
+            <pre><code>&lt;p&gt;Bu bir paragraf metnidir.&lt;/p&gt;
+&lt;p&gt;Bu da başka bir paragraf metnidir.&lt;/p&gt;</code></pre>
+
+            <h3>3. Anlamsal Metin Etiketleri</h3>
+            <p>Bu etiketler, metne sadece görsel bir stil değil, aynı zamanda anlamsal bir önem katarlar.</p>
+            <ul>
+                <li><code>&lt;strong&gt;</code>: Metnin **güçlü bir öneme** sahip olduğunu belirtir (örn: uyarı, kritik bilgi).</li>
+                <li><code>&lt;em&gt;</code>: Metne <em>vurgu</em> katmak için kullanılır (emphasis).</li>
+            </ul>
+
+            <h3>4. Görsel Metin Etiketleri</h3>
+            <p>Bu etiketler ise genellikle anlamsal bir önem taşımaz, sadece metnin görünüşünü değiştirir.</p>
+            <ul>
+                <li><code>&lt;b&gt;</code>: Metni sadece görsel olarak **kalın** yapar (bold).</li>
+                <li><code>&lt;i&gt;</code>: Metni sadece görsel olarak <em>eğik</em> yapar (italic - teknik terimler, yabancı kelimeler için kullanılabilir).</li>
+                <li><code>&lt;u&gt;</code>: Metnin altını çizer (underline). Linklerle karıştırılabileceği için pek kullanılmaz.</li>
+                <li><code>&lt;s&gt;</code>: Metnin üstünü çizer (strikethrough - artık geçerli olmayan bilgi).</li>
+                <li><code>&lt;sub&gt;</code>: Alt simge metni (H<sub>2</sub>O).</li>
+                <li><code>&lt;sup&gt;</code>: Üst simge metni (X<sup>2</sup>).</li>
+            </ul>
+            <pre><code>&lt;p&gt;Uyarı: &lt;strong&gt;Asla&lt;/strong&gt; bunu yapmayın. Bu &lt;em&gt;çok&lt;/em&gt; önemlidir.&lt;/p&gt;
+&lt;p&gt;Bu &lt;b&gt;kalın&lt;/b&gt; ve bu &lt;i&gt;eğik&lt;/i&gt; bir metin.&lt;/p&gt;</code></pre>
+
+            <h3>5. Alıntı ve Kod Etiketleri</h3>
+            <ul>
+                <li><code>&lt;blockquote&gt;</code>: Başka bir kaynaktan alıntı yapılmış uzun metin blokları için kullanılır. Tarayıcılar genelde bu metni biraz içeriden başlatır.</li>
+                <li><code>&lt;q&gt;</code>: Cümle içinde kısa, tırnak işareti gerektiren alıntılar için kullanılır. Tarayıcı otomatik olarak tırnak işaretlerini ekler.</li>
+                <li><code>&lt;code&gt;</code>: Bir kod parçasını belirtmek için kullanılır. Genellikle tek satırlık kodlar için tercih edilir.</li>
+                <li><code>&lt;pre&gt;</code>: İçine yazılan metnin boşluklarını ve satır atlamalarını koruyarak olduğu gibi gösterir. Genellikle çok satırlı kod blokları için <code>&lt;code&gt;</code> etiketi ile birlikte kullanılır.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="nitelikler">
+            <h2>Nitelikler (Attributes): Etiketlere Güç Katmak</h2>
+            <p>Nitelikler, HTML etiketlerine ek bilgi, ayar ve özellikler kazandıran özel kelimelerdir. Her zaman **başlangıç etiketinin içinde**, <code>isim="değer"</code> formatında yazılırlar.</p>
+
+            <pre><code>&lt;a href="https://www.google.com"&gt;Google'a Git&lt;/a&gt;</code></pre>
+            <p>Yukarıdaki örnekte;
+            <ul>
+                <li><code>&lt;a&gt;</code> etikettir.</li>
+                <li><code>href</code> nitelik (attribute) adıdır.</li>
+                <li><code>"https://www.google.com"</code> niteliğin değeridir.</li>
+            </ul>
+            </p>
+
+            <h3>1. Global Nitelikler (Tüm Etiketlerde Kullanılabilir)</h3>
+            <ul>
+                <li><code>id</code>: Bir elemente o sayfa içinde **benzersiz** bir kimlik verir. JavaScript ile belirli bir elementi yakalamak veya sayfa içi linkleme için kullanılır. Bir ID, bir sayfada sadece bir kez kullanılmalıdır.</li>
+                <li><code>class</code>: Bir veya daha fazla elemente bir sınıf ismi atar. Aynı sınıfa sahip birden çok elementi CSS ile aynı anda stilize etmek için kullanılır. Bir element birden fazla sınıfa sahip olabilir (boşlukla ayrılarak yazılır: <code>class="kart ana-sayfa"</code>).</li>
+                <li><code>style</code>: Bir elemente doğrudan CSS kodu yazmak (inline CSS) için kullanılır. Genellikle tavsiye edilmez, stilleri ayrı bir CSS dosyasında tutmak daha düzenlidir.</li>
+                <li><code>title</code>: Bir element hakkında ek bilgi verir. Fare imleci elementin üzerine geldiğinde küçük bir kutucuk içinde bu bilgi görünür.</li>
+            </ul>
+            <pre><code>&lt;h2 id="iletisim-formu"&gt;İletişim&lt;/h2&gt;
+&lt;p class="uyari-metni bold-text"&gt;Bu önemli bir duyurudur.&lt;/p&gt;
+&lt;button title="Kaydetmek için buraya tıklayın"&gt;Kaydet&lt;/button&gt;</code></pre>
+
+            <h3>2. Etikete Özgü Önemli Nitelikler</h3>
+            <p>Bazı nitelikler sadece belirli etiketlerle anlamlıdır:</p>
+            <ul>
+                <li><code>href</code>: <code>&lt;a&gt;</code> (link) etiketinde kullanılır ve linkin gideceği URL adresini belirtir.</li>
+                <li><code>src</code>: <code>&lt;img&gt;</code> (resim) etiketinde kullanılır ve resim dosyasının kaynağını (yolunu) belirtir.</li>
+                <li><code>alt</code>: <code>&lt;img&gt;</code> etiketinde kullanılır. Resim yüklenemezse yerine gösterilecek alternatif metni belirtir. Ekran okuyucular ve arama motorları için çok önemlidir.</li>
+                <li><code>type</code>: <code>&lt;input&gt;</code> etiketinin türünü belirtir (<code>text</code>, <code>password</code>, <code>email</code> vb.).</li>
+                <li><code>disabled</code>: Bir <code>&lt;button&gt;</code> veya <code>&lt;input&gt;</code> elemanını pasif hale getirir, tıklanamaz yapar.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="blok-inline">
+            <h2>Blok ve Satır İçi Elementler (Çok Önemli!)</h2>
+            <p>HTML elementleri, sayfada nasıl yer kapladıklarına göre temelde ikiye ayrılır. Bu, CSS ile düzen oluşturmanın temelini oluşturan çok kritik bir konudur.</p>
+
+            <h3>1. Blok (Block) Seviyesi Elementler</h3>
+            <p>Blok elementler, eklendikleri satırın **tamamını** kaplarlar. Kendilerinden önce ve sonra otomatik olarak bir satır atlaması oluştururlar. Bir kutu gibidirler.</p>
+            <ul>
+                <li><strong>Özellikleri:</strong> Genişliklerinin (width) ve yüksekliklerinin (height) tamamını kaplarlar.</li>
+                <li><strong>CSS:</strong> <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code> özelliklerinin tümü uygulanabilir.</li>
+                <li><strong>Başlıca Örnekler:</strong>
+                    <ul>
+                        <li><code>&lt;div&gt;</code> (En yaygın gruplama etiketi)</li>
+                        <li><code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code> (Başlıklar)</li>
+                        <li><code>&lt;p&gt;</code> (Paragraf)</li>
+                        <li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code> (Listeler)</li>
+                        <li><code>&lt;form&gt;</code>, <code>&lt;table&gt;</code></li>
+                        <li><code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code> (Semantik etiketler)</li>
+                    </ul>
+                </li>
+            </ul>
+            <pre><code>&lt;div style="background: lightblue;"&gt;Bu bir div (blok)&lt;/div&gt;
+&lt;div style="background: lightgreen;"&gt;Bu da başka bir div (blok)&lt;/div&gt;</code></pre>
+            <p>Yukarıdaki kod, iki div'i yan yana değil, alt alta gösterecektir çünkü her biri tüm satırı kaplar.</p>
+
+            <hr>
+
+            <h3>2. Satır İçi (Inline) Elementler</h3>
+            <p>Satır içi elementler, sadece **içerikleri kadar** yer kaplarlar. Bir cümlenin içindeki kelimeler gibi davranırlar ve yeni bir satır başlatmazlar.</p>
+            <ul>
+                <li><strong>Özellikleri:</strong> Metin akışını bozmazlar, yan yana dizilebilirler.</li>
+                <li><strong>CSS:</strong> <code>width</code> ve <code>height</code> özellikleri doğrudan **etki etmez**. Sadece yatay <code>margin</code> ve <code>padding</code> (sağ/sol) etki eder, dikey (üst/alt) boşluklar beklendiği gibi çalışmaz.</li>
+                <li><strong>Başlıca Örnekler:</strong>
+                    <ul>
+                        <li><code>&lt;span&gt;</code> (En yaygın satır içi gruplama)</li>
+                        <li><code>&lt;a&gt;</code> (Link)</li>
+                        <li><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code></li>
+                        <li><code>&lt;img&gt;</code> (Resimler, özel bir durumdur, inline gibi davranır ama width/height alabilir)</li>
+                        <li><code>&lt;code&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code></li>
+                        <li><code>&lt;input&gt;</code>, <code>&lt;button&gt;</code> (Bunlar da inline-block denilen özel bir kategoriye daha yakındır)</li>
+                    </ul>
+                </li>
+            </ul>
+            <pre><code>&lt;p&gt;
+  Bu bir paragraf.
+  &lt;span style="background: yellow;"&gt;Bu bir span (inline)&lt;/span&gt;
+  ve &lt;a href="#"&gt;bu da bir link (inline)&lt;/a&gt;.
+  Hepsi aynı satırda.
+&lt;/p&gt;</code></pre>
+
+            <h3><code>&lt;div&gt;</code> ve <code>&lt;span&gt;</code> Farkı</h3>
+            <ul>
+                <li><code>&lt;div&gt;</code>: Anlamsız **Blok** konteyner. Genellikle sayfanın büyük bölümlerini (header, sidebar, content) gruplamak için kullanılır.</li>
+                <li><code>&lt;span&gt;</code>: Anlamsız **Satır İçi** konteyner. Genellikle bir cümlenin içindeki belirli bir kelimeyi veya kelime grubunu stilize etmek (rengini değiştirmek vb.) için kullanılır.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="listeler">
+            <h2>Listeler: Verileri Düzenli Sunmak</h2>
+            <p>HTML'de listeler, birbiriyle ilişkili öğeleri gruplandırmak için kullanılır. Üç ana liste türü vardır.</p>
+
+            <h3>1. Sırasız Listeler: <code>&lt;ul&gt;</code> ve <code>&lt;li&gt;</code></h3>
+            <p>Öğelerin sırasının önemli olmadığı durumlar için kullanılır (unordered list). Öğeler (<code>&lt;li&gt;</code>) varsayılan olarak madde imi (•) ile gösterilir. Navigasyon menüleri yapmak için en sık kullanılan yöntemdir.</p>
+            <pre><code>&lt;h4&gt;Alışveriş Listesi&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Süt&lt;/li&gt;
+  &lt;li&gt;Ekmek&lt;/li&gt;
+  &lt;li&gt;Peynir&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+            <h3>2. Sıralı Listeler: <code>&lt;ol&gt;</code> ve <code>&lt;li&gt;</code></h3>
+            <p>Öğelerin sırasının önemli olduğu durumlar için kullanılır (ordered list). Öğeler varsayılan olarak sayılarla (1, 2, 3, ...) gösterilir.</p>
+            <pre><code>&lt;h4&gt;Kahve Yapımı&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Suyu kaynat.&lt;/li&gt;
+  &lt;li&gt;Kahveyi fincana koy.&lt;/li&gt;
+  &lt;li&gt;Sıcak suyu ekle ve karıştır.&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+            <h3>3. Tanım Listeleri: <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code></h3>
+            <p>Bir terim ve o terimin tanımını eşleştirmek için kullanılır (description list). Sözlükler veya SSS (Sıkça Sorulan Sorular) bölümleri için mükemmeldir.</p>
+            <ul>
+                <li><code>&lt;dl&gt;</code>: (Description List) Tüm listeyi sarmalar.</li>
+                <li><code>&lt;dt&gt;</code>: (Description Term) Tanımlanacak terim.</li>
+                <li><code>&lt;dd&gt;</code>: (Description Details) Terimin tanımı.</li>
+            </ul>
+            <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Web sayfalarının iskeletini oluşturan standart işaretleme dilidir.&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;HTML elementlerini biçimlendirmek için kullanılan dildir.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="linkler-resimler">
+            <h2>Linkler ve Resimler</h2>
+            <p>Linkler (bağlantılar) web'in ruhudur; sayfaları ve siteleri birbirine bağlarlar. Resimler ise içeriği zenginleştirir.</p>
+
+            <h3>1. Linkler (Bağlantılar): <code>&lt;a&gt;</code> Etiketi</h3>
+            <p><code>&lt;a&gt;</code> (anchor - çapa) etiketi, metin veya resim gibi elementleri tıklanabilir hale getirir. En önemli niteliği <code>href</code>'tir.</p>
+
+            <h4>Mutlak (Absolute) ve Göreceli (Relative) Yollar</h4>
+            <p><code>href</code> ve <code>src</code> nitelikleri için yol belirtmenin iki yolu vardır:</p>
+            <ul>
+                <li><strong>Mutlak Yol (Absolute Path):</strong> Tam web adresidir. Başka bir siteye link verirken kullanılır. <code>https://</code> ile başlamalıdır.
+                    <br><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code>
+                </li>
+                <li><strong>Göreceli Yol (Relative Path):</strong> Kendi sitemiz içindeki bir dosyaya işaret eder. Bulunduğu dosyaya "göre" bir yol belirtir.
+                    <br><code>&lt;a href="hakkimizda.html"&gt;Hakkımızda&lt;/a&gt;</code> (Aynı klasördeyse)
+                    <br><code>&lt;a href="sayfalar/iletisim.html"&gt;İletişim&lt;/a&gt;</code> (Bir alt klasördeyse)
+                    <br><code>&lt;a href="../index.html"&gt;Ana Sayfa&lt;/a&gt;</code> (Bir üst klasördeyse)
+                </li>
+            </ul>
+
+            <h4>Önemli <code>&lt;a&gt;</code> Nitelikleri</h4>
+            <ul>
+                <li><code>target="_blank"</code>: Linkin yeni bir sekmede açılmasını sağlar. Dışarıya link verirken sıkça kullanılır.
+                    <br><code>&lt;a href="..." target="_blank"&gt;Yeni Sekmede Aç&lt;/a&gt;</code></li>
+                <li><code>rel="noopener noreferrer"</code>: Güvenlik için <code>target="_blank"</code> ile birlikte kullanılması şiddetle tavsiye edilir.</li>
+                <li><strong>Sayfa İçi Link (Anchor Link):</strong> Kullanıcıyı aynı sayfanın farklı bir bölümüne (bir ID'ye) götürür.
+                    <br><code>&lt;a href="#iletisim-formu"&gt;İletişime Git&lt;/a&gt;</code> (Yukarıdaki 'Nitelikler' bölümündeki ID'ye gider)</li>
+            </ul>
+
+            <hr>
+
+            <h3>2. Resimler: <code>&lt;img&gt;</code> Etiketi</h3>
+            <p><code>&lt;img&gt;</code> (image) etiketi, bir web sayfasına resim eklemek için kullanılan boş bir etikettir.</p>
+
+            <h4>Zorunlu Nitelikler: <code>src</code> ve <code>alt</code></h4>
+            <ul>
+                <li><code>src</code> (Source - Kaynak): Gösterilecek resim dosyasının yolunu belirtir (göreceli veya mutlak olabilir).</li>
+                <li><code>alt</code> (Alternative Text - Alternatif Metin): Resmin bir açıklamasını içerir. Bu metin **çok önemlidir**:
+                    <ol>
+                        <li>Resim yüklenemezse (yol hatası, yavaş bağlantı) yerine bu metin görünür.</li>
+                        <li>Ekran okuyucu kullanan görme engelli kullanıcılar için resmi tarif eder (Erişilebilirlik).</li>
+                        <li>Arama motorlarının (SEO) resmin ne hakkında olduğunu anlamasına yardımcı olur.</li>
+                    </ol>
+                </li>
+            </ul>
+            <pre><code>&lt;img src="images/logo.png" alt="Şirket Logosu"&gt;
+&lt;img src="https://i.ibb.co/kedi.jpg" alt="Pencerede oturan siyah kedi"&gt;</code></pre>
+
+            <h4>Diğer Nitelikler</h4>
+            <ul>
+                <li><code>width</code> ve <code>height</code>: Resmin genişlik ve yüksekliğini piksel cinsinden belirtir. Bu nitelikleri kullanmak, tarayıcının resim yüklenmeden önce o alanı ayırmasını sağlar ve sayfanın yüklenirken "kaymasını" (layout shift) engeller.
+                    <br><code>&lt;img src="kedi.jpg" alt="Kedi" width="300" height="200"&gt;</code>
+                </li>
+            </ul>
+            <p><strong>Not:</strong> Resimleri yeniden boyutlandırmak için bu nitelikler yerine CSS kullanmak daha esnek ve modern bir yöntemdir.</p>
+
+            <h3>3. Tıklanabilir Resimler</h3>
+            <p>Bir resmi link haline getirmek için <code>&lt;img&gt;</code> etiketini bir <code>&lt;a&gt;</code> etiketinin içine yerleştirmeniz yeterlidir.</p>
+            <pre><code>&lt;a href="index.html"&gt;
+  &lt;img src="logo.png" alt="Site Logosu - Ana Sayfaya Dön"&gt;
+&lt;/a&gt;</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="tablolar">
+            <h2>Tablolar: Verileri Satır ve Sütunlarda Sunma</h2>
+            <p>HTML tabloları, verileri satırlar ve sütunlar halinde düzenli bir şekilde göstermek için kullanılır. Unutmayın, tabloların asıl amacı, Excel tabloları gibi, **tablo formatındaki verileri** (fiyat listeleri, istatistikler vb.) sunmaktır. Sayfa düzeni için kullanılmamalıdırlar (artık bunun için Flexbox ve Grid kullanıyoruz).</p>
+
+            <h3>1. Temel Tablo Etiketleri</h3>
+            <ul>
+                <li><code>&lt;table&gt;</code>: Tablonun tamamını sarmalayan ana konteyner.</li>
+                <li><code>&lt;tr&gt;</code>: (Table Row) Bir tablo satırı oluşturur.</li>
+                <li><code>&lt;th&gt;</code>: (Table Head) Bir başlık hücresi oluşturur. Varsayılan olarak <strong>kalın</strong> ve ortalı görünür.</li>
+                <li><code>&lt;td&gt;</code>: (Table Data) Standart bir veri hücresi oluşturur.</li>
+            </ul>
+
+            <h3>2. Gelişmiş Tablo Yapısı: `<thead>`, `<tbody>`, `<tfoot>`</h3>
+            <p>Daha karmaşık ve anlamsal olarak doğru tablolar oluşturmak için, satırları başlık, gövde ve alt bilgi bölümlerine ayırabiliriz.</p>
+            <ul>
+                <li><code>&lt;thead&gt;</code>: Tablonun başlık satırlarını (<code>&lt;tr&gt;</code> içinde <code>&lt;th&gt;</code> olanları) gruplar.</li>
+                <li><code>&lt;tbody&gt;</code>: Tablonun ana veri satırlarını gruplar.</li>
+                <li><code>&lt;tfoot&gt;</code>: Tablonun alt bilgi satırlarını (toplamlar, özetler vb.) gruplar.</li>
+                <li><code>&lt;caption&gt;</code>: Tablonun ne hakkında olduğunu açıklayan bir başlık ekler.</li>
+            </ul>
+            <h4>Yapısal Tablo Örneği:</h4>
+            <pre><code>&lt;table&gt;
+  &lt;caption&gt;Aylık Giderler&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Gider Kalemi&lt;/th&gt;
+      &lt;th&gt;Tutar&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Kira&lt;/td&gt;
+      &lt;td&gt;5000 TL&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Faturalar&lt;/td&gt;
+      &lt;td&gt;1500 TL&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Toplam&lt;/td&gt;
+      &lt;td&gt;6500 TL&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+
+            <h3>3. Hücreleri Birleştirme: `colspan` ve `rowspan`</h3>
+            <p>Bazen bir hücrenin birden fazla sütuna veya satıra yayılması gerekebilir.</p>
+            <ul>
+                <li><code>colspan="2"</code>: Bir hücrenin yatay olarak 2 **sütun** kaplamasını sağlar.</li>
+                <li><code>rowspan="3"</code>: Bir hücrenin dikey olarak 3 **satır** kaplamasını sağlar.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="formlar">
+            <h2>Formlar: Kullanıcıdan Veri Almak</h2>
+            <p>HTML formları, web sitelerinin en interaktif kısımlarıdır. Kullanıcıdan bilgi toplamak (iletişim formları, üye girişleri, arama kutuları) için kullanılırlar.</p>
+
+            <h3>1. Ana Form Etiketi: <code>&lt;form&gt;</code></h3>
+            <p>Tüm form elemanları, <code>&lt;form&gt;</code> etiketi ile sarmalanmalıdır. Bu etiket, verilerin nasıl ve nereye gönderileceğini belirleyen önemli niteliklere sahiptir.</p>
+            <ul>
+                <li><code>action</code>: Form gönderildiğinde, verilerin işlenmek üzere gönderileceği URL'yi (sunucu adresi veya bir script) belirtir.</li>
+                <li><code>method</code>: Verilerin sunucuya nasıl gönderileceğini belirler.
+                    <ul>
+                        <li><code>GET</code>: Verileri URL üzerinden gönderir (örn: <code>arama.php?q=kedi</code>). Arama kutuları için uygundur.</li>
+                        <li><code>POST</code>: Verileri arka planda, HTTP isteğinin gövdesinde gizli olarak gönderir. Şifre, e-posta gibi hassas veriler için **zorunludur**.</li>
+                    </ul>
+                </li>
+            </ul>
+            <pre><code>&lt;form action="/kayit-islemi" method="POST"&gt;
+  ... form elemanları ...
+&lt;/form&gt;</code></pre>
+
+            <h3>2. <code>&lt;label&gt;</code> ve <code>&lt;input&gt;</code> İlişkisi (Erişilebilirlik)</h3>
+            <p>Formlarda her giriş alanı (input) için bir etiket (label) kullanmak çok önemlidir. <code>&lt;label&gt;</code> etiketinin <code>for</code> niteliği, ilgili <code>&lt;input&gt;</code>'un <code>id</code>'si ile eşleşmelidir.</p>
+            <p>Bu, iki önemli fayda sağlar:
+            <ol>
+                <li>Kullanıcı etikete tıkladığında, imleç otomatik olarak ilgili giriş alanına odaklanır.</li>
+                <li>Ekran okuyucular, kullanıcının hangi alana ne girmesi gerektiğini anlar.</li>
+            </ol>
+            </p>
+            <pre><code>&lt;label for="ad"&gt;Adınız:&lt;/label&gt;
+&lt;input type="text" id="ad" name="kullanici_adi"&gt;</code></pre>
+            <p><code>name</code> niteliği, sunucuya veri gönderildiğinde bu alanın "değişken adı" olarak kullanılır (örn: <code>kullanici_adi = "Ahmet"</code>).</p>
+
+            <h3>3. En Yaygın Input Türleri</h3>
+            <p><code>&lt;input&gt;</code> etiketi, <code>type</code> niteliği ile farklı türlerde veri girişi sağlayabilir:</p>
+            <ul>
+                <li><code>type="text"</code>: Tek satırlık normal metin girişi.</li>
+                <li><code>type="password"</code>: Yazılan karakterleri gizleyen şifre girişi.</li>
+                <li><code>type="email"</code>: E-posta formatında giriş yapılmasını zorunlu kılan (mobil klavyeyi değiştiren) alan.</li>
+                <li><code>type="number"</code>: Sadece sayı girişine izin veren alan.</li>
+                <li><code>type="checkbox"</code>: Kullanıcının birden çok seçenek arasından bir veya daha fazlasını seçebileceği onay kutusu.</li>
+                <li><code>type="radio"</code>: Kullanıcının bir grup seçenekten sadece birini seçebileceği radyo butonu. (Aynı gruptaki tüm radio'ların <code>name</code> niteliği aynı olmalıdır).</li>
+                <li><code>type="file"</code>: Kullanıcının cihazından dosya seçmesini sağlar.</li>
+                <li><code>type="submit"</code>: Formu <code>action</code> niteliğinde belirtilen adrese gönderen özel bir buton. <code>value</code> niteliği, butonun üzerindeki metni belirler.</li>
+            </ul>
+
+            <h3>4. Diğer Form Elemanları</h3>
+            <ul>
+                <li><code>&lt;textarea&gt;</code>: Kullanıcının çok satırlı metin (adres, mesaj, yorum vb.) girmesi için bir alan oluşturur.</li>
+                <li><code>&lt;select&gt;</code> ve <code>&lt;option&gt;</code>: Açılır menü (dropdown) oluşturur.
+                    <pre><code>&lt;label for="sehir"&gt;Şehir:&lt;/label&gt;
+&lt;select id="sehir" name="kullanici_sehir"&gt;
+  &lt;option value="ist"&gt;İstanbul&lt;/option&gt;
+  &lt;option value="ank"&gt;Ankara&lt;/option&gt;
+  &lt;option value="izm"&gt;İzmir&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                </li>
+                <li><code>&lt;button&gt;</code>: Tıklanabilir bir buton oluşturur. <code>type="submit"</code> (varsayılan), <code>type="reset"</code> (formu sıfırlar) veya <code>type="button"</code> (JavaScript ile kullanılır) olabilir.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="multimedya">
+            <h2>Multimedya: Video, Ses ve Iframe</h2>
+            <p>Web sayfalarınıza metin ve resimlerin ötesinde zengin içerikler ekleyebilirsiniz.</p>
+
+            <h3>1. Video Ekleme: <code>&lt;video&gt;</code></h3>
+            <p>Kendi sunucunuzdaki bir video dosyasını oynatmak için <code>&lt;video&gt;</code> etiketini kullanabilirsiniz.</p>
+            <ul>
+                <li><code>src</code>: Video dosyasının yolu.</li>
+                <li><code>controls</code>: Oynatma, durdurma, ses gibi kontrolleri gösterir.</li>
+                <li><code>autoplay</code>: Otomatik başlatır (çoğu tarayıcıda <code>muted</code> olmadan engellenir).</li>
+                <li><code>muted</code>: Sesi kapalı başlatır.</li>
+                <li><code>loop</code>: Video bittiğinde tekrar başlatır.</li>
+            </ul>
+            <pre><code>&lt;video src="videolarim/tanitim.mp4" controls width="600"&gt;
+  Tarayıcınız video etiketini desteklemiyor.
+&lt;/video&gt;</code></pre>
+
+            <h3>2. Ses Ekleme: <code>&lt;audio&gt;</code></h3>
+            <p>Bir podcast veya müzik dosyası oynatmak için <code>&lt;audio&gt;</code> etiketi kullanılır. <code>&lt;video&gt;</code> ile aynı niteliklerin çoğunu alır.</p>
+            <pre><code>&lt;audio src="muzik/podcast.mp3" controls&gt;
+  Tarayıcınız ses etiketini desteklemiyor.
+&lt;/audio&gt;</code></pre>
+
+            <h3>3. Dış Kaynak Gömme: <code>&lt;iframe&gt;</code></h3>
+            <p><code>&lt;iframe&gt;</code> (inline frame), bir web sayfası içine başka bir web sayfasını gömmenizi sağlar. En yaygın kullanım alanı YouTube videolarını veya Google Haritaları gömmektir.</p>
+            <p>YouTube'da bir videonun altındaki "Paylaş" > "Yerleştir" (Embed) seçeneği size hazır bir <code>&lt;iframe&gt;</code> kodu verecektir.</p>
+            <pre><code>&lt;!-- YouTube Video Gömme Örneği --&gt;
+&lt;iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/VIDEO_ID_BURAYA"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Google Harita Gömme Örneği --&gt;
+&lt;iframe
+  src="https://www.google.com/maps/embed?..."
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="semantik">
+            <h2>Semantik HTML: Koda Anlam Katmak</h2>
+            <p>"Semantik", "anlamla ilgili" demektir. Semantik HTML, her şeyi anlamsız <code>&lt;div&gt;</code> etiketleri ile yapmak yerine, içerdikleri içeriğin **anlamını** ve **amacını** açıkça belirten etiketler kullanmaktır.</p>
+
+            <h3>Neden <code>&lt;div&gt;</code> Yerine Bunları Kullanmalıyız?</h3>
+            <ul>
+                <li><strong>Erişilebilirlik (Accessibility):</strong> Ekran okuyucu kullanan görme engelli bir kullanıcı, <code>&lt;nav&gt;</code> etiketini gördüğünde "Ana Menü"ye atlayabilir. <code>&lt;div class="menu"&gt;</code> etiketini ise sadece bir "div" olarak okur.</li>
+                <li><strong>SEO (Arama Motoru Optimizasyonu):</strong> Google, <code>&lt;main&gt;</code> içindeki içeriğin <code>&lt;aside&gt;</code> içindekinden daha önemli olduğunu anlar ve sitenizi daha iyi indeksler.</li>
+                <li><strong>Okunabilirlik:</strong> Kodu okuyan başka bir geliştirici (veya gelecekteki siz), sayfanın yapısını anında anlar.</li>
+            </ul>
+
+            <h3>En Önemli Semantik Mizanpaj Etiketleri</h3>
+            <p>Modern bir web sayfasının temel bölümlerini tanımlarlar:</p>
+            <img src="https://i.ibb.co/6PqjBf7/semantic-html.png" alt="Semantik HTML Yapısı" style="width:100%; max-width:400px; background: white; padding: 10px; border-radius: 8px;">
+
+            <ul>
+                <li><code>&lt;header&gt;</code>: Sayfanın veya bir bölümün başlığını, logosunu, sloganını veya ana menüsünü içeren tanıtıcı bölümdür.</li>
+                <li><code>&lt;nav&gt;</code>: Sitenin ana navigasyon linklerini (menülerini) barındırmak için özel olarak tasarlanmıştır.</li>
+                <li><code>&lt;main&gt;</code>: Sayfanın ana ve benzersiz içeriğini sarmalar. Her sayfada sadece bir tane <code>&lt;main&gt;</code> etiketi olmalıdır.</li>
+                <li><code>&lt;section&gt;</code>: Belirli bir tema etrafında gruplanmış, birbiriyle ilişkili içerikleri barındırır (örn: Hakkımızda, Hizmetlerimiz).</li>
+                <li><code>&lt;article&gt;</code>: Kendi başına bir bütün olan, bağımsız içerikler (blog yazısı, haber, forum gönderisi) için kullanılır.</li>
+                <li><code>&lt;aside&gt;</code>: Ana içerikle dolaylı olarak ilgili olan içerikleri (kenar çubuğu, yazar bilgisi, ilgili linkler, reklamlar) barındırır.</li>
+                <li><code>&lt;footer&gt;</code>: Sayfanın en altındaki telif hakkı, iletişim bilgileri, site haritası gibi bilgileri içeren bölümdür.</li>
+            </ul>
+
+            <h3>Diğer Semantik Etiketler</h3>
+            <ul>
+                <li><code>&lt;figure&gt;</code> ve <code>&lt;figcaption&gt;</code>: Bir resim, diyagram veya kod bloğu gibi bir içeriği ve onun başlığını (<code>&lt;figcaption&gt;</code>) gruplamak için kullanılır.</li>
+                <li><code>&lt;time&gt;</code>: Bir tarih veya saati makinelerin okuyabileceği bir formatta belirtmek için kullanılır.
+                    <br><code>&lt;time datetime="2025-10-24"&gt;24 Ekim 2025&lt;/time&gt;</code>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="head">
+            <h2>Head Bölümü Detayları</h2>
+            <p><code>&lt;head&gt;</code> bölümü, sayfanızın görünmeyen ama çok önemli ayarlarını içerir. Tarayıcıya, arama motorlarına ve sosyal medya platformlarına sayfanız hakkında bilgi verir.</p>
+
+            <pre><code>&lt;head&gt;
+    &lt;!-- 1. Karakter Seti (Zorunlu) --&gt;
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;!-- 2. Mobil Uyumluluk (Zorunlu) --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;!-- 3. Sayfa Başlığı (Zorunlu) --&gt;
+    &lt;title&gt;Sitenizin Harika Başlığı&lt;/title&gt;
+
+    &lt;!-- 4. CSS Dosyası --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+
+    &lt;!-- 5. Favicon (Sekme İkonu) --&gt;
+    &lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;
+
+    &lt;!-- 6. SEO ve Sosyal Medya Meta Etiketleri (Önemli) --&gt;
+    &lt;meta name="description" content="Bu sayfa, HTML'i sıfırdan öğreten harika bir rehberdir."&gt;
+    &lt;meta property="og:title" content="HTML Öğreniyorum" /&gt;
+    &lt;meta property="og:image" content="https://siteniz.com/paylasim-resmi.jpg" /&gt;
+&lt;/head&gt;</code></pre>
+
+            <h3>1. Viewport Meta Etiketi</h3>
+            <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>
+            <p>Bu etiket, mobil cihazlar için **hayatidir**. Tarayıcıya, sayfanın genişliğini cihazın ekran genişliğine eşitlemesini ve ilk yüklemede %100 ölçekle (yakınlaştırma yapmadan) başlamasını söyler. Bu satır olmadan, siteniz mobil cihazlarda masaüstü görünümünün küçültülmüş bir versiyonu gibi görünür ve okunamaz.</p>
+
+            <h3>2. Favicon</h3>
+            <code>&lt;link rel="icon" href="favicon.ico"&gt;</code>
+            <p>Tarayıcı sekmesinde, başlığın yanında görünen küçük ikondur. Sitenizin markalaşması için önemlidir.</p>
+
+            <h3>3. SEO ve Sosyal Medya Etiketleri</h3>
+            <ul>
+                <li><code>&lt;meta name="description" ...&gt;</code>: Google arama sonuçlarında, başlığınızın altında görünen 150-160 karakterlik açıklamadır. Kullanıcıların sitenize tıklamasını sağlar.</li>
+                <li><code>og:title</code>, <code>og:image</code> vb.: "Open Graph" protokolüdür. Birisi sitenizin linkini Facebook, Twitter veya WhatsApp'ta paylaştığında, hangi başlığın, hangi resmin ve hangi açıklamanın görüneceğini bu etiketler belirler.</li>
+            </ul>
+        </div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

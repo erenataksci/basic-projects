@@ -1,0 +1,338 @@
+/* =================================================================
+   1. GENEL AYARLAR VE CSS DEĞİŞKENLERİ
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;700&display=swap');
+
+:root {
+    --primary-color: #007bff; /* Ana Mavi */
+    --primary-hover: #0056b3; /* Ana Mavi Hover */
+    --text-color-light: #f8f9fa; /* Açık Mod Yazı */
+    --text-color-dark: #212529; /* Koyu Mod Yazı */
+    --bg-light: #f8f9fa; /* Açık Mod Arkaplan */
+    --bg-dark: #121212; /* Koyu Mod Arkaplan */
+    --surface-light: #ffffff; /* Açık Mod Kart Rengi */
+    --surface-dark: #1e1e1e; /* Koyu Mod Kart Rengi */
+    --border-light: #dee2e6; /* Açık Mod Kenarlık */
+    --border-dark: #343a40; /* Koyu Mod Kenarlık */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Yumuşak Gölge */
+
+    --font-body: 'Roboto', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    scroll-behavior: smooth; /* Sayfa içi geçişleri yumuşatır */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-light);
+    color: var(--text-color-dark);
+    line-height: 1.7;
+    padding: 40px;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-color-light);
+}
+
+/* =================================================================
+   2. GENEL ELEMENTLER (BAŞLIK, KOD, TABLO vb.)
+   ================================================================= */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+
+h1 { font-size: 2.8em; margin-bottom: 0.5em; }
+h2 { font-size: 2em; border-bottom: 2px solid var(--border-light); padding-bottom: 0.5em; margin-top: 1.5em; }
+h3 { font-size: 1.5em; }
+
+body.dark-mode h2 {
+    border-bottom-color: var(--border-dark);
+}
+
+.main-content hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid var(--border-light);
+}
+body.dark-mode .main-content hr {
+    border-top-color: var(--border-dark);
+}
+
+
+pre {
+    background: #282c34; /* Modern kod bloğu arkaplanı */
+    color: #abb2bf;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95em;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+body.dark-mode code {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    box-shadow: var(--shadow);
+    background: var(--surface-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+th {
+    background-color: var(--bg-light);
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+body.dark-mode table { background: var(--surface-dark); }
+body.dark-mode th, body.dark-mode td { border-bottom-color: var(--border-dark); }
+body.dark-mode th { background-color: #2c2c2c; }
+
+/* =================================================================
+   3. ANA YAPI VE KARTLAR
+   ================================================================= */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.header h2 {
+    border: none;
+    font-weight: 400;
+    color: inherit;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.card {
+    background: var(--surface-light);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    border: none;
+    margin-top: 0;
+}
+
+.card a {
+    display: block;
+    text-align: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+.card a:hover {
+    background: var(--primary-hover);
+}
+
+body.dark-mode .card {
+    background: var(--surface-dark);
+}
+
+/* =================================================================
+   4. EĞİTİM SAYFASI (SIDEBAR & CONTENT)
+   ================================================================= */
+.page-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background: var(--surface-light);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 40px;
+}
+
+.sidebar h2 { margin-top: 0; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color-dark);
+}
+.sidebar ul li a:hover { background-color: var(--bg-light); }
+.sidebar ul li a.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+}
+.sidebar .back-button a { background-color: #6c757d; color: white; }
+.sidebar .back-button a:hover { background-color: #5a6268; }
+
+.main-content {
+    flex-grow: 1;
+    background: var(--surface-light);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+}
+.main-content .intro {
+    font-size: 1.1em;
+    color: #555;
+}
+.main-content img {
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+}
+
+/* === YENİ EKLENEN KISIM (BURADA) === */
+.content-section {
+    display: none; /* Tüm konu bölümlerini varsayılan olarak gizle */
+}
+.content-section.active {
+    display: block; /* Sadece 'active' sınıfına sahip olanı göster */
+    animation: fadeIn 0.5s ease; /* (Opsiyonel) Güzel bir giriş efekti */
+}
+
+/* (Opsiyonel) Giriş efekti için animasyon tanımı */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* === YENİ EKLENEN KISIM SONU === */
+
+
+body.dark-mode .sidebar, body.dark-mode .main-content {
+    background: var(--surface-dark);
+}
+body.dark-mode .sidebar ul li a { color: var(--text-color-light); }
+body.dark-mode .sidebar ul li a:hover { background-color: var(--bg-dark); }
+body.dark-mode .main-content .intro { color: #aaa; }
+
+/* =================================================================
+   5. BUTONLAR VE MODAL
+   ================================================================= */
+button#temaBtn {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    z-index: 1000;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--surface-light);
+    color: var(--text-color-dark);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+button#temaBtn:hover {
+    transform: scale(1.05);
+}
+body.dark-mode button#temaBtn {
+    background: var(--surface-dark);
+    color: var(--text-color-light);
+}
+
+.btn-copy {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
+    background: #3a404a;
+    color: var(--text-color-light);
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+pre:hover .btn-copy {
+    opacity: 1;
+}
+.btn-copy:hover {
+    background: #4a515e;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+#modalImg {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px #000;
+    cursor: default;
+}

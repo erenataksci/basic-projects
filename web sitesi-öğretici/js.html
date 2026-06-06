@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Öğreniyorum - Kapsamlı Rehber</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="temaBtn">Koyu Modu Aç</button>
+
+<div class="page-container">
+
+    <aside class="sidebar">
+        <h2>JavaScript Konuları</h2>
+        <ul>
+            <li><a href="#" class="topic-link active" data-topic="giris">Giriş ve Kurulum</a></li>
+            <li><a href="#" class="topic-link" data-topic="temeller">Temeller: Değişkenler ve Veri Türleri</a></li>
+            <li><a href="#" class="topic-link" data-topic="operatorler">Operatörler</a></li>
+            <li><a href="#" class="topic-link" data-topic="kosullar">Koşullar (If/Else, Switch)</a></li>
+            <li><a href="#" class="topic-link" data-topic="donguler">Döngüler (for, while)</a></li>
+            <li><a href="#" class="topic-link" data-topic="fonksiyonlar">Fonksiyonlar (ve Arrow Functions)</a></li>
+            <li><a href="#" class="topic-link" data-topic="objeler">Objeler (Objects)</a></li>
+            <li><a href="#" class="topic-link" data-topic="diziler">Diziler (ve Array Metotları)</a></li>
+            <li><a href="#" class="topic-link" data-topic="dom-secim">DOM: Element Seçme</a></li>
+            <li><a href="#" class="topic-link" data-topic="dom-manipulasyon">DOM: Element Manipülasyonu</a></li>
+            <li><a href="#" class="topic-link" data-topic="olaylar">Olaylar (Events)</a></li>
+            <li><a href="#" class="topic-link" data-topic="es6-modern">ES6+ Modern JS Özellikleri</a></li>
+            <li><a href="#" class="topic-link" data-topic="asenkron">Asenkron JS (fetch, async/await)</a></li>
+            <li><hr></li>
+            <li class="back-button"><a href="index.html">Ana Sayfaya Dön</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="content-section active" data-topic="giris">
+            <h1>Giriş: JavaScript Nedir ve Nasıl Çalışır?</h1>
+            <p class="intro">JavaScript, web sayfalarını interaktif ve dinamik hale getiren bir programlama dilidir. HTML ve CSS ile birlikte web geliştirmenin üç temel taşından biridir.</p>
+            <img src="js.jpeg" alt="JavaScript Logo" width="200">
+            <p>Ev analojimizde, HTML iskelet, CSS dekorasyon ise <strong>JavaScript o evin beyni ve elektrik tesisatıdır.</strong> Butona basınca ışığın yanması, form gönderme, animasyonlar ve sunucudan veri çekme gibi tüm "eylemler" JavaScript ile yapılır.</p>
+
+            <h3>JS Kodu Sayfaya Nasıl Eklenir?</h3>
+            <p>Tıpkı CSS gibi, 3 yolu vardır. Ve yine tıpkı CSS gibi, en iyi yöntem "Harici" olanıdır.</p>
+            <ol>
+                <li><strong>Harici (External) - En İyi Yöntem:</strong> Kodlar <code>script.js</code> gibi ayrı bir dosyaya yazılır.</li>
+                <li><strong>Dahili (Internal):</strong> Kodlar, <code>&lt;script&gt; ... &lt;/script&gt;</code> etiketleri arasına yazılır.</li>
+                <li><strong>Satır İçi (Inline):</strong> Kodlar, <code>onclick="..."</code> gibi HTML niteliklerine yazılır. (Kesinlikle tavsiye edilmez).</li>
+            </ol>
+
+            <h4>ÖNEMLİ KURAL: <code>&lt;script&gt;</code> Nereye Konur?</h4>
+            <p>CSS <code>&lt;link&gt;</code> etiketinin aksine, <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> etiketi genellikle <code>&lt;head&gt;</code> içine **konulmaz**. </p>
+            <p>Bunun yerine, <code>&lt;body&gt;</code> etiketinin **kapanışından hemen önceye**, yani sayfanın en altına konur. </p>
+            <pre><code>  ... (tüm HTML içeriği) ...
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <p><strong>Neden?</strong> Çünkü JS, HTML elementlerini (buton, başlık vb.) manipüle edecektir. Tarayıcının, JS kodunu çalıştırmadan önce o HTML elementlerini ekrana çizmiş (parse etmiş) olduğundan emin olmak isteriz. Aksi halde JS, var olmayan bir butonu seçmeye çalışır ve hata verir.</p>
+
+            <h3>İlk Aracımız: `console.log()`</h3>
+            <p><code>console.log()</code>, bir geliştiricinin en iyi dostudur. Değişkenlerin değerini veya kodun çalışıp çalışmadığını görmek için tarayıcının "Geliştirici Konsolu"na (F12 > Console) mesaj yazdırmanızı sağlar.</p>
+            <pre><code>console.log("Merhaba Dünya!"); // F12 > Console sekmesinde bunu göreceksin.
+console.log(4 + 4); // Konsola "8" yazar.</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="temeller">
+            <h2>Temeller: Değişkenler ve Veri Türleri</h2>
+
+            <h3>Değişkenler: `let`, `const` (ve `var`)</h3>
+            <p>Değişkenler, verileri depolamak için kullanılan isimlendirilmiş kaplardır.</p>
+            <ul>
+                <li><code>let</code>: Değeri daha sonra **değiştirilebilen** değişkenler için kullanılır. (Modern <code>var</code>'dır).</li>
+                <li><code>const</code>: Değeri **sabit** kalacak, hiç değişmeyecek değişkenler (constants) için kullanılır.</li>
+                <li><code>var</code>: Eski JavaScript değişken tanımlama yöntemidir. Kapsam (scope) sorunları nedeniyle modern JS'te artık kullanılması **tavsiye edilmez**. Her zaman <code>let</code> veya <code>const</code> kullanın.</li>
+            </ul>
+            <pre><code>// Değeri değişebilen bir değişken
+let kullaniciYasi = 25;
+kullaniciYasi = 26; // Geçerli.
+
+// Sabit bir değişken
+const dogumYili = 1999;
+// dogumYili = 2000; // Hata! const ile tanımlanan değişken değiştirilemez.
+
+const ad = "Ahmet";</code></pre>
+
+            <h3>Temel Veri Türleri (Primitive Types)</h3>
+            <ul>
+                <li><strong>String (Metin):</strong> Tırnak işaretleri içindeki metinlerdir.
+                    <br><code>const isim = "Ayşe";</code> (Çift veya 'tek' tırnak kullanılabilir).
+                </li>
+                <li><strong>Number (Sayı):</strong> Hem tam sayılar (10) hem de ondalıklı sayılar (3.14) için kullanılır.
+                    <br><code>let puan = 100;</code>
+                </li>
+                <li><strong>Boolean (Mantıksal):</strong> Sadece iki değeri olabilir: <code>true</code> (doğru) veya <code>false</code> (yanlış).
+                    <br><code>const girisYaptiMi = true;</code>
+                </li>
+                <li><strong>undefined:</strong> Bir değişkene değer atanmadığında varsayılan değeridir.
+                    <br><code>let sepet; // Değeri undefined</code>
+                </li>
+                <li><strong>null:</strong> "Boş" veya "hiçbir değer yok" anlamına gelir. <code>undefined</code>'dan farklı olarak, bu "bilinçli" bir boşluktur.
+                    <br><code>let seciliKullanici = null;</code>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="operatorler">
+            <h2>Operatörler</h2>
+            <p>Değişkenler ve değerler üzerinde işlem yapmak için kullanılırlar.</p>
+
+            <h3>1. Aritmetik Operatörler</h3>
+            <p><code>+</code> (Toplama), <code>-</code> (Çıkarma), <code>*</code> (Çarpma), <code>/</code> (Bölme), <code>%</code> (Mod - Bölümden kalan).</p>
+            <pre><code>let sonuc = 10 + (5 * 2); // sonuc = 20
+let kalan = 10 % 3; // kalan = 1 (10/3'ten kalan 1'dir)
+
+// String birleştirme
+let tamAd = "Ahmet" + " " + "Yılmaz"; // "Ahmet Yılmaz"</code></pre>
+
+            <h3>2. Karşılaştırma Operatörleri (ÇOK ÖNEMLİ)</h3>
+            <p>İki değeri karşılaştırır ve <code>true</code> veya <code>false</code> (Boolean) bir sonuç döndürür.</p>
+            <ul>
+                <li><code>></code> (Büyük), <code><</code> (Küçük), <code>>=</code> (Büyük veya eşit), <code><=</code> (Küçük veya eşit)</li>
+                <li><code>==</code> (Gevşek Eşitlik): **Kullanmamaya çalışın!** Değerleri karşılaştırırken tiplerini zorla dönüştürür.
+                    <br><code>10 == "10" // true (Bu genellikle istenmez)</code>
+                </li>
+                <li><code>===</code> (Katı Eşitlik): **Her zaman bunu kullanın!** Hem değeri hem de veri tipini karşılaştırır.
+                    <br><code>10 === "10" // false (Çünkü biri number, biri string)</code>
+                    <br><code>10 === 10 // true</code>
+                </li>
+                <li><code>!=</code> (Gevşek Eşit Değil), <code>!==</code> (Katı Eşit Değil - **Bunu kullanın!**)</li>
+            </ul>
+
+            <h3>3. Mantıksal Operatörler</h3>
+            <p>Genellikle <code>if</code> koşullarında birden fazla durumu birleştirmek için kullanılır.</p>
+            <ul>
+                <li><code>&&</code> (AND - Ve): Her iki koşul da <code>true</code> ise <code>true</code> döner.
+                    <br><code>(yas > 18 && ehliyetVarMi)</code>
+                </li>
+                <li><code>||</code> (OR - Veya): Koşullardan en az biri <code>true</code> ise <code>true</code> döner.
+                    <br><code>(kullaniciAdi === "admin" || kullaniciAdi === "moderator")</code>
+                </li>
+                <li><code>!</code> (NOT - Değil): Bir boolean değerin tersini alır.
+                    <br><code>!girisYaptiMi // Eğer true ise false, false ise true yapar</code>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="kosullar">
+            <h2>Koşullar (If/Else, Switch)</h2>
+            <p>Kodun, belirli bir koşulun <code>true</code> veya <code>false</code> olmasına bağlı olarak farklı yollar izlemesini sağlar.</p>
+
+            <h3>`if`, `else if`, `else`</h3>
+            <p>En yaygın kullanılan koşul yapısıdır.</p>
+            <pre><code>const saat = 14;
+
+if (saat < 12) {
+  console.log("Günaydın!");
+} else if (saat < 18) {
+  console.log("Tünaydın!");
+} else {
+  console.log("İyi akşamlar!");
+}
+// Konsola "Tünaydın!" yazar.</code></pre>
+
+            <h3>`switch`</h3>
+            <p>Bir değişkenin alabileceği çok sayıda spesifik değere karşı kontrol yapmak için <code>if/else if</code> zincirine temiz bir alternatiftir.</p>
+            <pre><code>const gun = "Salı";
+
+switch (gun) {
+  case "Pazartesi":
+    console.log("Haftanın ilk günü.");
+    break; // break: bloğu terk et
+  case "Salı":
+  case "Çarşamba":
+    console.log("Hafta ortası.");
+    break;
+  case "Cuma":
+    console.log("Hafta sonu yaklaşıyor!");
+    break;
+  default:
+    console.log("Normal bir gün.");
+}
+// Konsola "Hafta ortası." yazar.</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="donguler">
+            <h2>Döngüler (Loops)</h2>
+            <p>Bir kod bloğunu belirli bir koşul sağlandığı sürece veya belirli bir sayıda tekrar tekrar çalıştırmanızı sağlar.</p>
+
+            <h3>`for` Döngüsü</h3>
+            <p>En yaygın döngü türüdür. Başlangıcı, bitiş koşulu ve artış miktarı bellidir.</p>
+            <pre><code>// 0'dan 4'e kadar (5 dahil değil) sayıları yazdır:
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+// Konsola yazar:
+// 0
+// 1
+// 2
+// 3
+// 4</code></pre>
+
+            <h3>`while` Döngüsü</h3>
+            <p>Sadece bir koşul <code>true</code> olduğu sürece çalışmaya devam eder. Koşulun döngü içinde <code>false</code>'a dönmesini sağlamak sizin sorumluluğunuzdadır, yoksa "sonsuz döngü" oluşur.</p>
+            <pre><code>let sayac = 0;
+while (sayac < 3) {
+  console.log("Sayac: " + sayac);
+  sayac++; // Koşulu false yapmak için sayacı artır
+}
+// Konsola yazar:
+// Sayac: 0
+// Sayac: 1
+// Sayac: 2</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="fonksiyonlar">
+            <h2>Fonksiyonlar (ve Arrow Functions)</h2>
+            <p>Fonksiyonlar, belirli bir görevi yerine getiren, yeniden kullanılabilir kod bloklarıdır. Kod tekrarını önlerler.</p>
+
+            <h3>1. Fonksiyon Bildirimi (Function Declaration)</h3>
+            <p>Standart, isimlendirilmiş fonksiyon tanımı.</p>
+            <pre><code>// Fonksiyonu TANIMLA
+function selamVer(isim) {
+  console.log("Merhaba, " + isim + "!");
+}
+
+// Fonksiyonu ÇAĞIR
+selamVer("Ayşe"); // Konsola "Merhaba, Ayşe!" yazar.
+selamVer("Fatma"); // Konsola "Merhaba, Fatma!" yazar.</code></pre>
+
+            <h3>`return` Anahtar Kelimesi</h3>
+            <p>Bir fonksiyondan bir değer "döndürmek" için kullanılır. <code>console.log</code> sadece konsola yazar, <code>return</code> ise değeri hesaplamanın yapıldığı yere geri gönderir.</p>
+            <pre><code>function topla(sayi1, sayi2) {
+  return sayi1 + sayi2;
+}
+
+const toplam = topla(5, 3);
+console.log(toplam); // Konsola 8 yazar.</code></pre>
+
+            <h3>2. Arrow Functions (ES6) (Çok Önemli)</h3>
+            <p>Modern JavaScript'te fonksiyon yazmanın daha kısa ve temiz bir yoludur. Özellikle `forEach`, `map` gibi metotlar içinde çok kullanılırlar.</p>
+            <pre><code>// Geleneksel Yöntem (Function Expression)
+const karesiniAl = function(sayi) {
+  return sayi * sayi;
+}
+
+// Arrow Function Yöntemi
+const karesiniAlArrow = (sayi) => {
+  return sayi * sayi;
+}
+
+// Arrow Function (Tek satırlık return için daha kısa yazım)
+const karesiniAlKisa = (sayi) => sayi * sayi;
+
+console.log(karesiniAlKisa(4)); // Konsola 16 yazar.</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="objeler">
+            <h2>Objeler (Objects)</h2>
+            <p>Objeler, birbiriyle ilişkili verileri ve fonksiyonları (metotları) bir arada tutan koleksiyonlardır. <code>anahtar: değer</code> (key: value) çiftlerinden oluşurlar.</p>
+
+            <h3>Obje Literali</h3>
+            <p>Obje oluşturmanın en yaygın yoludur.</p>
+            <pre><code>const kullanici = {
+  // Anahtarlar (Keys)   // Değerler (Values)
+  ad: "Ali",
+  soyad: "Veli",
+  yas: 30,
+  girisYaptiMi: true,
+  favoriRenkler: ["mavi", "yeşil"], // Değer bir dizi olabilir
+
+  // Metot (Obje içindeki fonksiyon)
+  tamAdiniGetir: function() {
+    // 'this' anahtar kelimesi, içinde bulunduğu objeyi (kullanici) temsil eder.
+    return this.ad + " " + this.soyad;
+  }
+};</code></pre>
+
+            <h3>Özelliklere Erişme</h3>
+            <p>İki yolu vardır: Nokta Gösterimi (Dot Notation) ve Köşeli Parantez Gösterimi (Bracket Notation).</p>
+            <pre><code>// 1. Nokta Gösterimi (En yaygın)
+console.log(kullanici.ad); // "Ali"
+console.log(kullanici.favoriRenkler[0]); // "mavi"
+
+// Metodu çağırma
+console.log(kullanici.tamAdiniGetir()); // "Ali Veli"
+
+// 2. Köşeli Parantez Gösterimi (Anahtar bir değişkende tutuluyorsa zorunludur)
+console.log(kullanici["yas"]); // 30
+
+const secim = "soyad";
+console.log(kullanici[secim]); // "Veli" (kullanici.secim çalışmazdı)</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="diziler">
+            <h2>Diziler (Arrays)</h2>
+            <p>Diziler, birden fazla değeri tek bir değişken altında sıralı bir listede tutmamızı sağlar. Diziler teknik olarak özel bir obje türüdür.</p>
+            <pre><code>// Diziler 0 (sıfır) indis numarası ile başlar
+const meyveler = ["Elma", "Armut", "Muz"];</code></pre>
+
+            <h3>Dizi Özellikleri ve Temel Metotlar</h3>
+            <ul>
+                <li><code>meyveler[0]</code>: Dizinin ilk elemanına erişir ("Elma").</li>
+                <li><code>meyveler[1] = "Çilek";</code>: Dizinin ikinci elemanını günceller.</li>
+                <li><code>meyveler.length</code>: Dizinin eleman sayısını verir (3).</li>
+                <li><code>meyveler.push("Kiraz")</code>: Dizinin **sonuna** yeni bir eleman ekler.</li>
+                <li><code>meyveler.pop()</code>: Dizinin **sonundaki** elemanı çıkarır.</li>
+            </ul>
+
+            <h3>Modern ve Güçlü Dizi Metotları (ES6+)</h3>
+            <p>Bu metotlar, döngü yazmak yerine veriyi dönüştürmek ve filtrelemek için kullanılır. Orijinal diziyi **değiştirmezler**, yeni bir dizi döndürürler.</p>
+
+            <h4>`forEach` (Döngü)</h4>
+            <p>Dizideki her bir eleman için bir fonksiyon çalıştırır. (<code>for</code> döngüsünün modern halidir).</p>
+            <pre><code>meyveler.forEach(function(meyve, indis) {
+  console.log(indis + ": " + meyve);
+});
+// VEYA Arrow Function ile:
+meyveler.forEach((meyve) => console.log(meyve));</code></pre>
+
+            <h4>`map` (Dönüştürme)</h4>
+            <p>Dizideki her bir elemanı alıp, onu *dönüştürerek* **yeni bir dizi** oluşturur.</p>
+            <pre><code>const sayilar = [1, 2, 3, 4];
+const ikiKati = sayilar.map((sayi) => sayi * 2);
+// ikiKati = [2, 4, 6, 8]
+// (orijinal 'sayilar' dizisi değişmedi)</code></pre>
+
+            <h4>`filter` (Filtreleme)</h4>
+            <p>Dizideki elemanlardan sadece *koşulu sağlayanları* alıp **yeni bir dizi** oluşturur.</p>
+            <pre><code>const sayilar = [1, 2, 3, 4, 5, 6];
+const ciftSayilar = sayilar.filter((sayi) => sayi % 2 === 0);
+// ciftSayilar = [2, 4, 6]</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="dom-secim">
+            <h2>DOM: Element Seçme</h2>
+            <p>JavaScript'in tarayıcıdaki gücü, HTML elementlerini (DOM - Document Object Model) seçebilmesinden ve değiştirebilmesinden gelir.</p>
+
+            <h3>Modern Yöntem: `querySelector`</h3>
+            <p>CSS seçicileri kullanarak bir element seçmenin en modern ve esnek yoludur. Sayfada bulduğu **ilk** eşleşmeyi döndürür.</p>
+            <pre><code>// ID'ye göre seç
+const baslik = document.querySelector("#ana-baslik");
+
+// Sınıfa göre seç
+const ilkKart = document.querySelector(".kart");
+
+// Etikete göre seç
+const ilkParagraf = document.querySelector("p");
+
+// Daha karmaşık bir seçici
+const ilkKartinResmi = document.querySelector(".kart img");</code></pre>
+
+            <h3>Modern Yöntem: `querySelectorAll`</h3>
+            <p><code>querySelector</code> gibidir ancak eşleşen **tüm** elementleri bir "NodeList" (diziye benzer) olarak döndürür.</p>
+            <pre><code>// Sayfadaki TÜM kartları seç
+const tumKartlar = document.querySelectorAll(".kart");
+
+// NodeList üzerinde forEach ile dönebiliriz:
+tumKartlar.forEach((kart) => {
+  kart.style.border = "1px solid red"; // Tüm kartlara kırmızı kenarlık ekle
+});</code></pre>
+
+            <h3>Eski Yöntemler (Hala Yaygın)</h3>
+            <ul>
+                <li><code>document.getElementById("ana-baslik")</code>: Sadece ID ile seçer (Hızlıdır).</li>
+                <li><code>document.getElementsByClassName("kart")</code>: Sınıfa göre seçer (Canlı bir HTMLCollection döndürür, <code>forEach</code> doğrudan çalışmaz).</li>
+                <li><code>document.getElementsByTagName("p")</code>: Etikete göre seçer.</li>
+            </ul>
+            <p><strong>Tavsiye:</strong> Genellikle <code>querySelector</code> ve <code>querySelectorAll</code> kullanmak en temizidir.</p>
+        </div>
+
+        <div class="content-section" data-topic="dom-manipulasyon">
+            <h2>DOM: Element Manipülasyonu</h2>
+            <p>Elementleri seçtikten sonra onları değiştirebiliriz.</p>
+
+            <h3>İçerik Değiştirme: `textContent` ve `innerHTML`</h3>
+            <ul>
+                <li><code>.textContent</code>: Sadece metin içeriğini alır veya değiştirir. Güvenlidir.</li>
+                <li><code>.innerHTML</code>: Elementin içindeki HTML kodunu alır veya değiştirir. Kullanıcıdan alınan veriyi buraya basmak XSS açıkları oluşturabileceğinden **tehlikeli** olabilir.</li>
+            </ul>
+            <pre><code>const baslik = document.querySelector("#ana-baslik");
+baslik.textContent = "Yeni Harika Başlık!"; // Sadece metni değiştirir
+
+const icerik = document.querySelector(".icerik");
+icerik.innerHTML = "&lt;h2&gt;HTML Eklendi&lt;/h2&gt;&lt;p&gt;Bu bir paragraf.&lt;/p&gt;";</code></pre>
+
+            <h3>Stil Değiştirme: `.style`</h3>
+            <p>Elementlerin CSS özelliklerini doğrudan değiştirir. (Genellikle stil için class ekleyip/çıkarmak daha iyidir).</p>
+            <pre><code>baslik.style.color = "blue";
+baslik.style.backgroundColor = "#f0f0f0"; // CSS'teki "background-color" burada "backgroundColor" olur</code></pre>
+
+            <h3>Sınıf (Class) Değiştirme: `.classList` (En İyi Yöntem)</h3>
+            <p>Stil değiştirmenin en temiz yolu, stilleri CSS'te tanımlayıp (örn: <code>.aktif</code>, <code>.dark-mode</code>) JavaScript ile bu sınıfları ekleyip çıkarmaktır.</p>
+            <ul>
+                <li><code>.classList.add("aktif")</code>: Sınıf ekler.</li>
+                <li><code>.classList.remove("aktif")</code>: Sınıfı kaldırır.</li>
+                <li><code>.classList.toggle("aktif")</code>: Sınıf yoksa ekler, varsa kaldırır (Aç/Kapa için harikadır).</li>
+            </ul>
+            <pre><code>// <div class="menu"></div>
+const menu = document.querySelector(".menu");
+menu.classList.add("acik"); // <div class="menu acik"></div>
+menu.classList.toggle("acik"); // <div class="menu"></div></code></pre>
+
+            <h3>Element Oluşturma ve Ekleme</h3>
+            <pre><code>// 1. Yeni bir <li> elementi oluştur
+const yeniOge = document.createElement("li");
+
+// 2. İçeriğini ayarla
+yeniOge.textContent = "Yeni Liste Elemanı";
+
+// 3. Mevcut bir listeyi seç
+const liste = document.querySelector("ul");
+
+// 4. Yeni elementi listenin sonuna ekle
+liste.append(yeniOge); // (append modern yöntemdir, appendChild da kullanılır)</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="olaylar">
+            <h2>Olaylar (Events)</h2>
+            <p>Olaylar, kullanıcının yaptığı eylemlerdir (butona tıklama, fareyi gezdirme, klavyeden bir tuşa basma vb.). JavaScript ile bu olayları "dinleyebilir" ve olay gerçekleştiğinde bir kod bloğunu çalıştırabiliriz.</p>
+
+            <h3>`addEventListener` (En İyi Yöntem)</h3>
+            <p>Bir elemente bir olay dinleyici eklemenin modern ve esnek yoludur.</p>
+            <pre><code>// 1. Butonu seç
+const buton = document.querySelector("#uyari-butonu");
+
+// 2. 'click' (tıklama) olayını dinle
+buton.addEventListener("click", function() {
+  // 3. Olay gerçekleştiğinde bu fonksiyon çalışır
+  alert("Butona tıklandı!");
+});
+
+// Arrow function ile daha kısa:
+buton.addEventListener("click", () => {
+  console.log("Tıklandı!");
+});</code></pre>
+
+            <h3>Yaygın Olay Türleri</h3>
+            <ul>
+                <li><code>click</code>: Tıklama.</li>
+                <li><code>mouseover</code> / <code>mouseout</code>: Fare üzerine gelme / çekilme.</li>
+                <li><code>keydown</code> / <code>keyup</code>: Klavyede tuşa basma / bırakma.</li>
+                <li><code>input</code>: Bir giriş alanının (<code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>) değeri değiştiğinde.</li>
+                <li><code>submit</code>: Bir form (<code>&lt;form&gt;</code>) gönderildiğinde.</li>
+            </ul>
+
+            <h3>`event` Objesi ve `preventDefault()`</h3>
+            <p>Olay gerçekleştiğinde, çalışan fonksiyona otomatik olarak bir <code>event</code> (olay) objesi parametre olarak gönderilir.</p>
+            <p><code>event.preventDefault()</code>, tarayıcının o olay için varsayılan davranışını (örn: forma tıklayınca sayfanın yenilenmesi, linke tıklayınca başka sayfaya gitmesi) engeller.</p>
+            <pre><code>const form = document.querySelector("form");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // Tarayıcının formu gönderip sayfayı yenilemesini ENGELLE
+
+  console.log("Form gönderildi ama sayfa yenilenmedi.");
+  // Burada form verilerini alıp kendimiz işleyebiliriz.
+});</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="es6-modern">
+            <h2>ES6+ Modern JS Özellikleri</h2>
+            <p>ES6 (ECMAScript 2015), JavaScript'e devrim niteliğinde yenilikler getirdi. <code>let/const</code>, Arrow Functions ve <code>map/filter</code> dışında en çok kullanacaklarınız:</p>
+
+            <h3>Template Literals (Şablon Dizgeleri)</h3>
+            <p>Ters tırnak (<code>``</code> - backtick) kullanarak, metin (string) içine <code>${...}</code> söz dizimiyle kolayca değişken eklemenizi sağlar. (<code>+</code> ile birleştirmeye son!)</p>
+            <pre><code>const ad = "Ayşe";
+const yas = 28;
+
+// Eski Yöntem:
+const mesajEski = "Merhaba, benim adım " + ad + " ve ben " + yas + " yaşındayım.";
+
+// Modern Yöntem (Template Literal):
+const mesajYeni = `Merhaba, benim adım ${ad} ve ben ${yas} yaşındayım.`;</code></pre>
+
+            <h3>Destructuring (Yapı Bozma)</h3>
+            <p>Objelerden veya dizilerden verileri çekip doğrudan değişkenlere atamanın kısa yoludur.</p>
+            <pre><code>// Obje Destructuring
+const kullanici = {
+  id: 1,
+  kullaniciAdi: "coder123",
+  email: "test@test.com"
+};
+// 'id' ve 'email'i objeden çekip değişken yap:
+const { id, email } = kullanici;
+console.log(id); // 1
+console.log(email); // "test@test.com"
+
+// Dizi Destructuring
+const renkler = ["kırmızı", "yeşil", "mavi"];
+const [ilkRenk, ikinciRenk] = renkler;
+console.log(ilkRenk); // "kırmızı"</code></pre>
+
+            <h3>Spread Operatörü (<code>...</code>)</h3>
+            <p>Bir dizinin veya objenin tüm elemanlarını "yayarak" yeni bir diziye/objeye kopyalamayı sağlar.</p>
+            <pre><code>const temelRenkler = ["kırmızı", "yeşil", "mavi"];
+const tumRenkler = [...temelRenkler, "sarı", "mor"];
+// tumRenkler = ["kırmızı", "yeşil", "mavi", "sarı", "mor"]
+
+const kullaniciTemel = { ad: "Zeynep" };
+const kullaniciTam = { ...kullaniciTemel, yas: 22 };
+// kullaniciTam = { ad: "Zeynep", yas: 22 }</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="asenkron">
+            <h2>Asenkron JS (fetch, async/await)</h2>
+            <p class="intro">Bu ileri düzey bir konudur ancak modern web'in temelidir. JavaScript varsayılan olarak "senkron" (sıralı) çalışır. Ancak bir sunucudan veri çekmek (API isteği) gibi zaman alan işlemler, tüm kodun kilitlenmesine neden olur.</p>
+            <p>Asenkron (eşzamansız) programlama, bu zaman alan işlemin arka planda tamamlanmasını beklerken, kodun geri kalanının çalışmaya devam etmesini sağlar.</p>
+
+            <h3><code>fetch</code> ile Veri Çekme (Promise Tabanlı)</h3>
+            <p><code>fetch</code>, tarayıcıda sunuculardan (API'lardan) veri çekmek için kullanılan modern fonksiyondur. "Promise" (söz) döndürür; yani işlemin gelecekte bir zamanda tamamlanacağına dair bir söz.</p>
+
+            <h3>En Temiz Yöntem: `async / await`</h3>
+            <p><code>async/await</code>, Promise'leri (sözleri) senkron (sıralı) kod gibi temiz bir şekilde yönetmemizi sağlayan modern bir söz dizimidir.</p>
+            <ol>
+                <li>Fonksiyonun başına <code>async</code> yazılır.</li>
+                <li>Zaman alacak işlemin (<code>fetch</code> gibi) başına <code>await</code> yazılır.</li>
+                <li>Kod, o satırın bitmesini bekler ve sonra devam eder.</li>
+                <li>Hata yakalamak için <code>try...catch</code> bloğu kullanılır.</li>
+            </ol>
+
+            <pre><code>// Bir API'dan rastgele kullanıcı verisi çeken bir fonksiyon
+
+async function kullaniciGetir() {
+  try {
+    // 1. Await: API isteğinin bitmesini bekle
+    const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+
+    // 2. Await: Gelen cevabı JSON'a çevirmeyi bekle
+    const kullanici = await response.json();
+
+    // 3. Veriyi kullan
+    console.log(kullanici.name); // Konsola "Leanne Graham" yazar
+    document.querySelector("#ana-baslik").textContent = kullanici.name;
+
+  } catch (hata) {
+    // 4. Eğer bir ağ hatası olursa burası çalışır
+    console.error("Veri çekilemedi:", hata);
+  }
+}
+
+// Fonksiyonu çağır
+kullaniciGetir();</code></pre>
+        </div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

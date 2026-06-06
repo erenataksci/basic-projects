@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Öğreniyorum - Kapsamlı Rehber</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="temaBtn">Koyu Modu Aç</button>
+
+<div class="page-container">
+
+    <aside class="sidebar">
+        <h2>CSS Konuları</h2>
+        <ul>
+            <li><a href="#" class="topic-link active" data-topic="giris">Giriş: CSS Nedir?</a></li>
+            <li><a href="#" class="topic-link" data-topic="yazilis">CSS Nasıl Eklenir?</a></li>
+            <li><a href="#" class="topic-link" data-topic="syntax">Söz Dizimi ve Seçiciler</a></li>
+            <li><a href="#" class="topic-link" data-topic="kutu-modeli">Kutu Modeli (Box Model)</a></li>
+            <li><a href="#" class="topic-link" data-topic="birimler">Birimler (px, %, em, rem)</a></li>
+            <li><a href="#" class="topic-link" data-topic="tipografi">Tipografi (Yazı Tipleri)</a></li>
+            <li><a href="#" class="topic-link" data-topic="renkler">Renkler ve Arkaplanlar</a></li>
+            <li><a href="#" class="topic-link" data-topic="position">Konumlandırma (Position)</a></li>
+            <li><a href="#" class="topic-link" data-topic="flexbox">Flexbox ile Hizalama</a></li>
+            <li><a href="#" class="topic-link" data-topic="grid">Grid ile Mizanpaj</a></li>
+            <li><a href="#" class="topic-link" data-topic="media-query">Duyarlı Tasarım (Media Query)</a></li>
+
+            <li><hr></li>
+            <li class="back-button"><a href="index.html">Ana Sayfaya Dön</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="content-section active" data-topic="giris">
+            <h1>Giriş: CSS Nedir?</h1>
+            <p class="intro">CSS (Cascading Style Sheets - Basamaklı Stil Şablonları), HTML elementlerinin ekranda nasıl görüneceğini belirleyen bir stil dilidir. Web sayfalarının görsel tasarımını ve düzenini oluşturmak için kullanılır.</p>
+            <img src="css.png" alt="CSS Logo" width="200">
+            <p>Ev inşa etme analojimizi hatırlarsak: HTML iskeletti, CSS ise o iskeletin duvar rengi, mobilyaları, parke türü, kısacası tüm estetik ve dekorasyonuydu.</p>
+
+            <h3>"Cascading" (Basamaklı) Ne Anlama Geliyor?</h3>
+            <p>CSS'in en temel ve en güçlü özelliği "basamaklı" olmasıdır. Bu, stillerin bir öncelik sırasına göre uygulandığı anlamına gelir. Bir element için birden fazla stil kuralı tanımlanmışsa, tarayıcı hangisinin daha "spesifik" (belirgin) veya "önemli" olduğuna karar verir ve onu uygular. Bu sayede genel bir kural (örn: "tüm paragraflar mavi olsun") yazıp, daha sonra özel bir kural (örn: "ama ana sayfadaki bu paragraf kırmızı olsun") ile onu ezebilirsiniz.</p>
+
+            <p>CSS olmadan web, sıralı metin yığınlarından ibaret olurdu. CSS, web'e sanatı ve tasarımı getiren teknolojidir.</p>
+        </div>
+
+        <div class="content-section" data-topic="yazilis">
+            <h2>CSS Sayfaya Nasıl Eklenir? (3 Yöntem)</h2>
+            <p>HTML belgelerimize stil eklemenin üç temel yolu vardır. En iyiden en kötüye doğru sıralanmışlardır:</p>
+
+            <h3>1. Harici (External) CSS (En İyi Yöntem)</h3>
+            <p>Tüm CSS kodlarımızı <code>style.css</code> gibi ayrı bir <code>.css</code> dosyasına yazarız ve bu dosyayı <code>&lt;link&gt;</code> etiketi ile HTML sayfamızın <code>&lt;head&gt;</code> bölümüne bağlarız.</p>
+            <p><strong>Neden En İyisi?</strong>
+            <ul>
+                <li><strong>Merkezi Yönetim:</strong> Yüzlerce sayfalık bir sitenin stilini tek bir dosyadan değiştirebilirsiniz.</li>
+                <li><strong>Temiz Kod:</strong> HTML (yapı) ve CSS (görünüm) birbirinden tamamen ayrılır.</li>
+                <li><strong>Hız (Önbellekleme):</strong> Tarayıcı, <code>style.css</code> dosyasını bir kez indirir ve diğer sayfalara geçtiğinizde tekrar indirmek yerine önbellekten kullanır.</li>
+            </ul>
+            </p>
+            <pre><code>&lt;!-- index.html dosyasının &lt;head&gt; içine: --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+            <h3>2. Dahili (Internal) CSS</h3>
+            <p>CSS kodları, HTML dosyasının kendi <code>&lt;head&gt;</code> bölümü içine, <code>&lt;style&gt;</code> etiketleri arasına yazılır.</p>
+            <p><strong>Ne Zaman Kullanılır?</strong> Genellikle tek bir sayfaya özel stiller uygulamak için veya hızlı bir test yapmak için kullanılır. Harici CSS'ten daha az tercih edilir çünkü stiller diğer sayfalarda yeniden kullanılamaz.</p>
+            <pre><code>&lt;!-- index.html dosyasının &lt;head&gt; içine: --&gt;
+&lt;style&gt;
+  body {
+    background-color: lightblue;
+  }
+  h1 {
+    color: navy;
+  }
+&lt;/style&gt;</code></pre>
+
+            <h3>3. Satır İçi (Inline) CSS (En Kötü Yöntem)</h3>
+            <p>CSS kodları, doğrudan HTML elementinin <code>style</code> niteliği (attribute) içine yazılır.</p>
+            <p><strong>Neden Kaçınmalıyız?</strong>
+            <ul>
+                <li>HTML'i kirletir ve okunaksız hale getirir.</li>
+                <li>Bakımı imkansızdır (10 butonu değiştirmek için 10 etiketi de bulup düzeltmeniz gerekir).</li>
+                <li>CSS'in "basamaklı" yapısını bozar çünkü en yüksek önceliğe sahiptir ve ezilmesi (override) zordur.</li>
+            </ul>
+            </p>
+            <pre><code>&lt;!-- index.html dosyasının &lt;body&gt; içine: --&gt;
+&lt;h1 style="color: blue; font-size: 24px;"&gt;Bu başlık mavidir&lt;/h1&gt;</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="syntax">
+            <h2>Söz Dizimi (Syntax) ve Seçiciler</h2>
+            <p>Bir CSS kuralı iki ana bölümden oluşur: Seçici (Selector) ve Bildirim Bloğu (Declaration Block).</p>
+            <img src="https://i.ibb.co/L1Yx9Wb/css-syntax.png" alt="CSS Söz Dizimi" style="width:100%; max-width:500px; background: white; padding: 10px; border-radius: 8px;">
+            <ul>
+                <li><strong>Seçici (Selector):</strong> Hangi HTML elementini (veya elementlerini) stilize etmek istediğimizi belirtir (örn: <code>h1</code>, <code>.kart</code>, <code>#ana-baslik</code>).</li>
+                <li><strong>Bildirim Bloğu (Declaration Block):</strong> <code>{ ... }</code> süslü parantezleri arasındaki kısımdır.</li>
+                <li><strong>Özellik (Property):</strong> Değiştirmek istediğimiz stil özelliğidir (örn: <code>color</code>, <code>font-size</code>, <code>background-color</code>).</li>
+                <li><strong>Değer (Value):</strong> O özelliğe atadığımız değerdir (örn: <code>blue</code>, <code>16px</code>, <code>#FFF</code>).</li>
+            </ul>
+
+            <h3>En Sık Kullanılan Seçiciler</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Seçici Türü</th>
+                    <th>Örnek</th>
+                    <th>Açıklama</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Etiket (Type)</td>
+                    <td><code>p { ... }</code></td>
+                    <td>Sayfadaki tüm <code>&lt;p&gt;</code> etiketlerini seçer.</td>
+                </tr>
+                <tr>
+                    <td>Sınıf (Class)</td>
+                    <td><code>.kart { ... }</code></td>
+                    <td><code>class="kart"</code> niteliğine sahip tüm elementleri seçer. En çok kullanılan seçicidir.</td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td><code>#ana-baslik { ... }</code></td>
+                    <td><code>id="ana-baslik"</code> niteliğine sahip olan *tek* elementi seçer. ID'ler benzersiz olmalıdır.</td>
+                </tr>
+                <tr>
+                    <td>Evrensel (Universal)</td>
+                    <td><code>* { ... }</code></td>
+                    <td>Sayfadaki **tüm** elementleri seçer. (Genellikle <code>box-sizing</code> sıfırlaması için kullanılır).</td>
+                </tr>
+                <tr>
+                    <td>Gruplama</td>
+                    <td><code>h1, h2, h3 { ... }</code></td>
+                    <td>Virgülle ayrılmış tüm seçicileri (h1, h2 ve h3) aynı anda seçer.</td>
+                </tr>
+                <tr>
+                    <td>Torun (Descendant)</td>
+                    <td><code>.icerik p { ... }</code></td>
+                    <td><code>.icerik</code> sınıfına sahip bir elementin *içindeki* tüm <code>&lt;p&gt;</code> etiketlerini seçer.</td>
+                </tr>
+                <tr>
+                    <td>Çocuk (Child)</td>
+                    <td><code>.kart > img { ... }</code></td>
+                    <td><code>.kart</code> sınıfının *doğrudan alt öğesi* (çocuğu) olan <code>&lt;img&gt;</code> etiketlerini seçer.</td>
+                </tr>
+                <tr>
+                    <td>Sözde Sınıf (Pseudo-class)</td>
+                    <td><code>a:hover { ... }</code></td>
+                    <td>Bir elementin belirli bir durumunu seçer (örn: fare üzerine gelince, tıklandığında, ilk çocuk).</td>
+                </tr>
+                <tr>
+                    <td>Sözde Element (Pseudo-element)</td>
+                    <td><code>p::first-line { ... }</code></td>
+                    <td>Bir elementin belirli bir parçasını seçer (örn: ilk satırı, öncesi, sonrası).</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section" data-topic="kutu-modeli">
+            <h2>Kutu Modeli (Box Model)</h2>
+            <p>CSS'te her element, dört katmandan oluşan dikdörtgen bir kutu olarak düşünülür. Bu, web mizanpajının (layout) temel taşıdır.</p>
+            <img src="https://i.ibb.co/C0L5w2S/box-model.png" alt="Box Model Diagram" style="width:100%; max-width:400px; background: white; padding: 10px; border-radius: 8px;">
+            <ul>
+                <li><strong>1. Content (İçerik):</strong> Kutunun içeriği (metin, resim vb.). Genişliği <code>width</code>, yüksekliği <code>height</code> ile belirlenir.</li>
+                <li><strong>2. Padding (İç Boşluk):</strong> İçerik ile kenarlık arasındaki iç boşluktur. Kutunun "iç duvarının" kalınlığıdır.</li>
+                <li><strong>3. Border (Kenarlık):</strong> Padding'i çevreleyen kenarlıktır.</li>
+                <li><strong>4. Margin (Dış Boşluk):</strong> Kenarlığın dışındaki, diğer elementlerle arasındaki dış boşluktur.</li>
+            </ul>
+            <pre><code>.kutu {
+  width: 200px;          /* İçerik alanı genişliği */
+  height: 100px;         /* İçerik alanı yüksekliği */
+
+  padding: 20px;         /* 4 yönden de 20px iç boşluk */
+
+  border: 5px solid black; /* 5px kalınlığında siyah kenarlık */
+
+  margin: 30px;          /* Diğer elementlerle 30px dış boşluk */
+}</code></pre>
+
+            <h3>En Önemli Kural: `box-sizing: border-box`</h3>
+            <p>Varsayılan olarak (<code>box-sizing: content-box</code>), bir elemente <code>width: 200px</code> verdiğinizde, bu sadece *içerik* alanının genişliğidir. Üzerine <code>padding: 20px</code> ve <code>border: 5px</code> eklerseniz, elementin toplam genişliği:</p>
+            <p><code>200px (width) + 40px (sağ/sol padding) + 10px (sağ/sol border) = 250px</code> olur.</p>
+            <p>Bu durum, hesaplamayı çok zorlaştırır ve istenmeyen taşmalara neden olur.</p>
+            <p><strong>Çözüm:</strong> <code>box-sizing: border-box;</code> kuralı, tarayıcıya şunu der: "Sana verdiğim <code>width: 200px</code> değeri, o elementin *toplam* genişliği olsun. Padding ve Border'ı bu 200px'in içinden al, dışına ekleme."</p>
+            <p>Genellikle tüm elementlere bu kuralı uygulamak en iyi pratiktir:</p>
+            <pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+        </div>
+
+        <div class="content-section" data-topic="birimler">
+            <h2>Birimler (Units)</h2>
+            <p>CSS'te boyut ve mesafe belirtmek için çeşitli birimler kullanılır. Bunlar iki ana gruba ayrılır:</p>
+
+            <h3>1. Mutlak (Absolute) Birimler</h3>
+            <p>Boyutu sabit olan, başka bir değere göre değişmeyen birimlerdir. En yaygını <code>px</code>'tir.</p>
+            <ul>
+                <li><code>px</code> (Piksel): Ekrandaki bir pikseli temsil eder. En temel ve yaygın birimdir. <code>font-size: 16px;</code> veya <code>border: 1px solid red;</code></li>
+            </ul>
+
+            <h3>2. Göreceli (Relative) Birimler</h3>
+            <p>Başka bir değere (ebeveyn elementin boyutu, tarayıcı penceresinin boyutu vb.) göre hesaplanan esnek birimlerdir. Duyarlı tasarım (responsive design) için çok önemlidirler.</p>
+            <ul>
+                <li><code>%</code> (Yüzde): İçinde bulunduğu elementin (ebeveyn) ilgili özelliğinin yüzdesini alır. <code>width: 50%;</code> (Ebeveynin %50'si kadar geniş ol).</li>
+                <li><code>em</code>: Elementin kendi <code>font-size</code> değerine göre hesaplanır. Eğer <code>font-size: 16px;</code> ise, <code>2em</code> = <code>32px</code> olur. İç içe elementlerde karmaşıklaşabilir.</li>
+                <li><code>rem</code> (Root EM): **En çok tavsiye edilen** göreceli birimdir. <code>em</code> gibidir ancak her zaman *kök* elementin (<code>&lt;html&gt;</code>) <code>font-size</code> değerini baz alır. Tarayıcılarda bu varsayılan olarak <code>16px</code>'tir.
+                    <ul>
+                        <li><code>1rem = 16px</code></li>
+                        <li><code>1.5rem = 24px</code></li>
+                        <li><code>0.5rem = 8px</code></li>
+                    </ul>
+                    <p>Tüm <code>padding</code>, <code>margin</code> ve <code>font-size</code> değerlerini <code>rem</code> ile vermek, kullanıcının tarayıcı ayarlarından yazı tipi boyutunu büyütmesi durumunda tüm sitenin orantılı olarak büyümesini sağlar (Erişilebilirlik için harikadır).</p>
+                </li>
+                <li><code>vw</code> (Viewport Width): Tarayıcı penceresinin genişliğinin %1'idir. <code>100vw</code> = Tarayıcının tam genişliği.</li>
+                <li><code>vh</code> (Viewport Height): Tarayıcı penceresinin yüksekliğinin %1'idir. <code>100vh</code> = Tarayıcının tam yüksekliği. (Tüm ekranı kaplayan bir açılış bölümü yapmak için kullanılır).</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="tipografi">
+            <h2>Tipografi (Yazı Tipleri)</h2>
+            <p>Web sitenizin okunabilirliği ve karakteri için tipografi ayarları çok önemlidir.</p>
+            <ul>
+                <li><code>font-family</code>: Yazı tipi ailesini belirler. Birden fazla değer girilerek "font yığını" (font stack) oluşturulur. Tarayıcı ilkini bulamazsa ikincisini dener.
+                    <pre><code>font-family: "Poppins", Arial, sans-serif;</code></pre>
+                </li>
+                <li><code>font-size</code>: Yazı tipi boyutunu belirler (Örn: <code>16px</code>, <code>1.1rem</code>).</li>
+                <li><code>font-weight</code>: Yazı tipi kalınlığını belirler (Örn: <code>normal</code>, <code>bold</code>, veya <code>100</code>-<code>900</code> arası sayılar).</li>
+                <li><code>line-height</code>: Satır yüksekliğini belirler. Okunabilirlik için genellikle <code>1.5</code> veya <code>1.7</code> gibi birimsiz değerler kullanılır (font boyutunun 1.5 katı).</li>
+                <li><code>text-align</code>: Metnin yatay hizalamasını belirler (<code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code>).</li>
+                <li><code>text-decoration</code>: Metnin altı/üstü/ortası çizgili olmasını belirler. Genellikle linklerin altındaki çizgiyi kaldırmak için kullanılır (<code>text-decoration: none;</code>).</li>
+            </ul>
+
+            <h3>Google Fonts (Harici Yazı Tipi) Nasıl Kullanılır?</h3>
+            <ol>
+                <li><a href="https://fonts.google.com/" target="_blank">Google Fonts</a> sitesine gidin ve bir yazı tipi (örn: Poppins) seçin.</li>
+                <li>İstediğiniz kalınlıkları (örn: 400 Regular, 700 Bold) seçin.</li>
+                <li>Google'ın size verdiği <code>&lt;link&gt;</code> kodunu kopyalayıp HTML'inizin <code>&lt;head&gt;</code> bölümüne yapıştırın.</li>
+                <li>Verilen <code>font-family</code> kuralını CSS'inizde (örn: <code>body</code> seçicisinde) kullanın.</li>
+            </ol>
+        </div>
+
+        <div class="content-section" data-topic="renkler">
+            <h2>Renkler ve Arkaplanlar</h2>
+
+            <h3>Renk Değerleri Nasıl Belirtilir?</h3>
+            <ul>
+                <li><strong>Keyword (Anahtar Kelime):</strong> <code>red</code>, <code>blue</code>, <code>black</code>. Sınırlı sayıda renk vardır.</li>
+                <li><strong>HEX (Hexadecimal):</strong> <code>#RRGGBB</code>. En yaygın kullanılan yöntemdir.
+                    <br><code>#FF0000</code> (Kırmızı), <code>#000000</code> (Siyah), <code>#FFFFFF</code> (Beyaz), <code>#333</code> (Koyu Gri - kısa yazım).
+                </li>
+                <li><strong>RGB (Red, Green, Blue):</strong> <code>rgb(255, 0, 0)</code>. 0-255 arası değerler alır.</li>
+                <li><strong>RGBA (Red, Green, Blue, Alpha):</strong> <code>rgba(255, 0, 0, 0.5)</code>. RGB'ye ek olarak 0 (tamamen şeffaf) ile 1 (opak) arasında bir "Alpha" (şeffaflık) kanalı ekler.</li>
+            </ul>
+
+            <h3>Temel Özellikler</h3>
+            <ul>
+                <li><code>color</code>: Bir elementin içindeki metnin rengini değiştirir.</li>
+                <li><code>background-color</code>: Bir elementin arkaplan rengini değiştirir.</li>
+                <li><code>background-image</code>: Arka plana bir resim ekler.
+                    <pre><code>background-image: url('resimler/arkaplan.jpg');</code></pre>
+                </li>
+                <li><code>background-size</code>: Arkaplan resminin boyutunu ayarlar (<code>cover</code>: resmi sığdırıp kapla, <code>contain</code>: resmi bozmadan sığdır).</li>
+                <li><code>background-position</code>: Resmin konumunu ayarlar (<code>center</code>, <code>top right</code> vb.).</li>
+                <li><code>background-repeat</code>: Resmin tekrarlanıp tekrarlanmayacağını ayarlar (<code>no-repeat</code>, <code>repeat-x</code> vb.).</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="position">
+            <h2>Konumlandırma (Position)</h2>
+            <p><code>position</code> özelliği, elementlerin normal belge akışının dışına nasıl çıkarılacağını ve nasıl konumlandırılacağını belirler. Kutu Modeli ve Flex/Grid ile birlikte mizanpajın üçüncü temel direğidir.</p>
+            <ul>
+                <li><code>position: static;</code> (Varsayılan): Element normal HTML akışına göre konumlanır. <code>top</code>, <code>left</code> gibi özellikler etki etmez.</li>
+                <li><code>position: relative;</code> (Göreceli): Element normal akışa göre konumlanır, ancak <code>top</code>, <code>left</code>, <code>bottom</code>, <code>right</code> özellikleri ile normal konumuna *göre* kaydırılabilir. **En önemli özelliği, <code>absolute</code> konumlandırılmış çocuk elementler için bir "çapa" (konumlandırma ebeveyni) görevi görmesidir.**</li>
+                <li><code>position: absolute;</code> (Mutlak): Element, normal akıştan tamamen çıkarılır. En yakın <code>position: relative</code> (veya absolute, fixed, sticky) olan ebeveynine göre konumlanır. Eğer böyle bir ebeveyn bulamazsa <code>&lt;body&gt;</code>'e göre konumlanır.</li>
+                <li><code>position: fixed;</code> (Sabit): Element, normal akıştan çıkarılır ve tarayıcı penceresine (viewport) göre sabitlenir. Sayfa kaysa bile element hep aynı yerde kalır (örn: sabit menüler, "yukarı çık" butonu).</li>
+                <li><code>position: sticky;</code> (Yapışkan): Element, normal akışta yer alır, ancak kullanıcı sayfayı kaydırdığında belirli bir noktaya (örn: <code>top: 0;</code>) ulaştığında orada <code>fixed</code> gibi yapışıp kalır.</li>
+            </ul>
+
+            <h3><code>z-index</code></h3>
+            <p><code>position</code> değeri <code>static</code> dışında olan elementler üst üste binebilir. <code>z-index</code>, bu elementlerin yığılma sırasını belirler. Değeri yüksek olan, düşük olanın üstünde görünür. (Sadece <code>position</code> tanımlanmış elementlerde çalışır).</p>
+        </div>
+
+        <div class="content-section" data-topic="flexbox">
+            <h2>Flexbox ile Hizalama</h2>
+            <p>Flexbox, elementleri bir konteyner içinde **tek bir boyutta (yatay veya dikey)** hizalamayı, dağıtmayı ve sıralamayı inanılmaz kolaylaştıran modern bir CSS düzen modülüdür.</p>
+            <p>Flexbox'ta iki ana oyuncu vardır: <strong>Konteyner (Ebeveyn)</strong> ve <strong>Öğeler (Çocuklar)</strong>.</p>
+
+            <h3>Konteyner (Ebeveyn) Özellikleri</h3>
+            <p>Stiller, <code>display: flex;</code> verdiğiniz ana kutuya uygulanır.</p>
+            <ul>
+                <li><code>display: flex;</code>: Flexbox düzenini etkinleştiren sihirli anahtar.</li>
+                <li><code>flex-direction:</code>: Öğelerin dizilme yönünü belirler (<code>row</code>: yatay - varsayılan, <code>column</code>: dikey).</li>
+                <li><code>justify-content:</code>: Öğeleri ana eksende (yatayda) nasıl hizalayacağını belirler.
+                    <ul>
+                        <li><code>flex-start</code>: Başa yasla (varsayılan).</li>
+                        <li><code>flex-end</code>: Sona yasla.</li>
+                        <li><code>center</code>: Ortala.</li>
+                        <li><code>space-between</code>: İlk ve son öğeyi kenarlara yasla, aradaki boşlukları eşit dağıt.</li>
+                        <li><code>space-around</code>: Tüm öğelerin etrafına eşit boşluk bırak.</li>
+                    </ul>
+                </li>
+                <li><code>align-items:</code>: Öğeleri çapraz eksende (dikeyde) nasıl hizalayacağını belirler.
+                    <ul>
+                        <li><code>stretch</code>: Ebeveyn kadar uzat (varsayılan).</li>
+                        <li><code>flex-start</code>: Üste yasla.</li>
+                        <li><code>flex-end</code>: Alta yasla.</li>
+                        <li><code>center</code>: Dikeyde ortala.</li>
+                    </ul>
+                </li>
+                <li><code>flex-wrap:</code>: Öğeler konteynere sığmadığında ne yapacağını belirler (<code>nowrap</code>: sığdırmaya çalışır/taşar, <code>wrap</code>: alt satıra indirir).</li>
+            </ul>
+
+            <h3>Öğe (Çocuk) Özellikleri</h3>
+            <p>Stiller, <code>display: flex;</code> içindeki çocuklara uygulanır.</p>
+            <ul>
+                <li><code>flex-grow:</code>: Bir sayı alır (örn: <code>1</code>). Ebeveynde boş yer kalırsa, o boşluğun ne kadarını alacağını belirler.</li>
+                <li><code>flex-shrink:</code>: Bir sayı alır (örn: <code>1</code>). Öğeler sığmazsa, ne kadar küçüleceğini belirler.</li>
+                <li><code>flex-basis:</code>: Öğenin esnemeden/küçülmeden önceki varsayılan boyutunu belirler.</li>
+                <li><code>order:</code>: Öğelerin sırasını değiştirir (örn: <code>order: -1;</code> en başa alır).</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="grid">
+            <h2>Grid ile Mizanpaj</h2>
+            <p>CSS Grid, Flexbox'ın aksine **iki boyutlu (hem satır hem sütun)** bir düzen sistemi sunar. Karmaşık sayfa mizanpajları (layout) oluşturmak için tasarlanmıştır. Flexbox hizalama için, Grid ise mizanpaj için mükemmeldir.</p>
+
+            <h3>Konteyner (Ebeveyn) Özellikleri</h3>
+            <ul>
+                <li><code>display: grid;</code>: Grid düzenini etkinleştirir.</li>
+                <li><code>grid-template-columns:</code>: Sütunların yapısını tanımlar.
+                    <pre><code>/* 3 eşit sütun */
+grid-template-columns: 1fr 1fr 1fr;
+/* veya */
+grid-template-columns: repeat(3, 1fr);
+
+/* Bir sidebar ve bir ana içerik */
+grid-template-columns: 300px 1fr;
+</code></pre>
+                    <p><code>fr</code> (fraction - kesir) birimi, mevcut alanın orantılı bir parçasını temsil eder.</p>
+                </li>
+                <li><code>grid-template-rows:</code>: Satırların yapısını tanımlar (örn: <code>100px 1fr 50px;</code> - header, content, footer).</li>
+                <li><code>gap:</code> (veya <code>grid-gap</code>): Satır ve sütunlar arasındaki boşluğu belirler (örn: <code>20px</code>).</li>
+            </ul>
+
+            <h3>Öğe (Çocuk) Özellikleri</h3>
+            <p>Çocuk öğelerin grid içinde ne kadar alan kaplayacağını belirleriz.</p>
+            <ul>
+                <li><code>grid-column-start:</code> / <code>grid-column-end:</code>: Öğenin hangi sütun çizgisinde başlayıp hangisinde biteceğini belirler.</li>
+                <li><code>grid-row-start:</code> / <code>grid-row-end:</code>: Öğenin hangi satır çizgisinde başlayıp hangisinde biteceğini belirler.</li>
+                <li><code>grid-column: 1 / 3;</code> (Kısa yazım: 1. çizgiden başla, 3. çizgide bitir).</li>
+                <li><code>grid-column: span 2;</code> (Kısa yazım: 2 sütunluk yer kapla).</li>
+            </ul>
+        </div>
+
+        <div class="content-section" data-topic="media-query">
+            <h2>Duyarlı Tasarım (Responsive Design) & Media Query</h2>
+            <p>Duyarlı Tasarım, bir web sitesinin mobil telefonlardan tabletlere ve geniş masaüstü ekranlara kadar tüm cihazlarda iyi görünmesini ve düzgün çalışmasını sağlama pratiğidir.</p>
+            <p>Bunun için HTML'de <code><meta name="viewport" ...></code> etiketinin (HTML rehberinde açıklandı) olması **zorunludur**.</p>
+            <p>CSS'teki aracı ise <code>@media</code> sorgularıdır.</p>
+
+            <h3>Media Query Nedir?</h3>
+            <p>Media sorgusu, tarayıcı penceresinin genişliği, yüksekliği veya yönü gibi belirli koşullar sağlandığında uygulanacak özel CSS kuralları bloğudur.</p>
+
+            <h3>"Mobile-First" (Önce Mobil) Yaklaşımı</h3>
+            <p>En iyi pratiktir. Önce sitenin en dar (mobil) ekranlardaki stillerini yazarız (genellikle tek sütunlu, alt alta). Sonra <code>@media</code> sorguları ile ekran büyüdükçe (<code>min-width</code> - minimum genişlik) mizanpajı değiştiririz.</p>
+
+            <h4>Örnek:</h4>
+            <p>Önce mobil cihazlar için bir kart yapısı düşünelim:</p>
+            <pre><code>/* Mobil stilleri (varsayılan) */
+.kart-konteyner {
+  display: block; /* Normal akışta alt alta */
+}
+.kart {
+  width: 100%;
+  margin-bottom: 15px;
+}</code></pre>
+
+            <p>Şimdi, ekran genişliği <code>768px</code>'i (tablet boyutu) geçtiğinde, bu kartları yan yana göstermek için Flexbox veya Grid kullanalım:</p>
+            <pre><code>/* Tablet ve üzeri (min-width: 768px) */
+@media (min-width: 768px) {
+  .kart-konteyner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .kart {
+    /* 20px boşluğu hesaba katarak yaklaşık %50'lik alan */
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 0;
+  }
+}
+
+/* Geniş ekranlar (min-width: 1200px) */
+@media (min-width: 1200px) {
+  .kart {
+    /* 3'lü dizilim için */
+    flex-basis: calc(33.333% - 14px);
+  }
+}</code></pre>
+            <p>Bu yaklaşımla, siteniz her ekran boyutuna uyum sağlar.</p>
+        </div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

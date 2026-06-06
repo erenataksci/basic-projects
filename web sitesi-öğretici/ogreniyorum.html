@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sıfırdan Web Sitesi Yapımı Kursu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="temaBtn">Koyu Modu Aç</button>
+
+<div class="header">
+    <h1>Sıfırdan Web Sitesi Yapımı</h1>
+    <h2>Adım Adım Kendi Projeni Geliştir</h2>
+</div>
+
+<div class="page-container">
+    <main class="main-content">
+        <p class="intro">
+            Bu rehberde, hiç tecrüben olmasa bile kendi web siteni nasıl yapacağını adım adım öğreneceksin.
+            Web geliştirme, üç temel teknolojinin birleşimidir: HTML, CSS ve JavaScript.
+            Bu rehberde, bu üçünü kullanarak çalışan, basit bir proje yapacağız.
+            Her adımı dikkatlice oku ve kendi bilgisayarında uygula. Hazırsan, başlayalım!
+        </p>
+
+        <div class="content-section active" data-topic="bolum1">
+            <h2>Bölüm 1: Hazırlık ve Doğru Araçlar</h2>
+            <p>Bir işe başlamadan önce alet çantasına ihtiyacımız var. Bizim aletlerimiz yazılımlar olacak.</p>
+
+            <h3>Adım 1.1: Kod Editörü (Bizim Atölyemiz)</h3>
+            <p>Yazdığımız kodları renklendiren, hatalarımızı gösteren ve işimizi kolaylaştıran programlara "kod editörü" denir. Not defteri bile kullanılabilir, ancak bu bir at arabasıyla yarışa girmeye benzer.</p>
+            <p><strong>Bizim Seçimimiz: Visual Studio Code (VS Code)</strong></p>
+            <p>VS Code, ücretsiz, hızlı ve dünyadaki geliştiricilerin %80'inden fazlasının kullandığı standart editördür. Onu hemen <a href="https://code.visualstudio.com/" target="_blank">resmi sitesinden</a> indirip kurmalısın.</p>
+
+            <h4>Süper Güç Eklentisi: Live Server</h4>
+            <p>VS Code'u kurduktan sonra, soldaki "Extensions" (Kare ikon) sekmesine tıkla, arama kutusuna "Live Server" yaz ve ilk çıkanı yükle. Bu eklenti sayesinde, HTML dosyanı her kaydettiğinde tarayıcın otomatik olarak yenilenecek. Bu bize inanılmaz zaman kazandıracak.</p>
+
+            <h3>Adım 1.2: Web Tarayıcısı (Bizim Sahnemiz)</h3>
+            <p>Kodlarımızın son kullanıcıya nasıl göründüğünü test edeceğimiz yerdir. Muhtemelen zaten bir tane kullanıyorsun (Google Chrome, Firefox, Safari, Edge vb.).</p>
+            <p><strong>Tavsiyemiz: Google Chrome veya Firefox.</strong></p>
+            <p>Bu tarayıcılar, "Geliştirici Araçları" (DevTools) konusunda en iyileridir. Sayfandayken F12 tuşuna (veya sağ tıklayıp 'İncele') basarak bu araçları açabilirsin. Şimdilik sadece nasıl açıldığını bilmen yeterli. Hata ayıklamak için burayı çok kullanacağız.</p>
+
+            <h3>Adım 1.3: Proje Klasörünü Oluşturma (Bizim Planımız)</h3>
+            <p>Düzen, profesyonelliğin ilk adımıdır. Masaüstünde veya "Belgelerim" içinde **"ilk-sitem"** adında bir klasör oluştur. Tüm dosyalarımızı bu klasörün içinde tutacağız.</p>
+            <p>Şimdi VS Code'u aç, "File" > "Open Folder..." (Dosya > Klasör Aç) menüsünden bu yeni oluşturduğun **"ilk-sitem"** klasörünü seç. Artık çalışma alanımız hazır.</p>
+
+            <p>VS Code'un solundaki "Explorer" panelinde, "ilk-sitem" klasörünün üzerine gel ve şu üç dosyayı tek tek oluştur (Yeni Dosya ikonuna tıklayarak):</p>
+            <ul>
+                <li><code>index.html</code></li>
+                <li><code>style.css</code></li>
+                <li><code>script.js</code></li>
+            </ul>
+
+            <h4>Bu İsimler Neden Önemli?</h4>
+            <ul>
+                <li><code>index.html</code>: Sunucular, bir siteye girildiğinde varsayılan olarak bu isimdeki dosyayı arar. Ana sayfanız *her zaman* <code>index.html</code> olmalıdır.</li>
+                <li><code>.html</code>, <code>.css</code>, <code>.js</code>: Bunlar dosya uzantılarıdır. Bilgisayara bu dosyanın bir metin değil, bir HTML sayfası, bir CSS stil dosyası veya bir JavaScript kodu olduğunu söylerler.</li>
+            </ul>
+            <hr>
+        </div>
+
+        <div class="content-section active" data-topic="bolum2">
+            <h2>Bölüm 2: HTML ile Sayfa İskeletini Oluşturma</h2>
+            <p>HTML (HyperText Markup Language), sayfamızın iskeletidir. Başlıkları, paragrafları, resimleri ve linkleri HTML "etiketleri" ile belirleriz.</p>
+
+            <h3>Adım 2.1: HTML İskeleti (Boilerplate)</h3>
+            <p><code>index.html</code> dosyana tıkla. Boş dosyaya sadece bir ünlem işareti (<code>!</code>) yaz ve ardından <code>Enter</code> veya <code>Tab</code> tuşuna bas.</p>
+            <p>VS Code senin için sihirli bir şekilde tüm temel HTML iskeletini oluşturacaktır:</p>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h4>Bu Etiketler Ne Anlama Geliyor?</h4>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code>: Tarayıcıya "Bu modern bir HTML5 sayfasıdır" der.</li>
+                <li><code>&lt;html lang="en"&gt;</code>: Sayfanın ana dilinin İngilizce olduğunu söyler. Bunu <code>lang="tr"</code> olarak değiştirelim.</li>
+                <li><code>&lt;head&gt;</code>: Sayfanın görünmeyen ayar kısmıdır (Başlık, CSS dosyaları, meta veriler).</li>
+                <li><code>&lt;title&gt;Document&lt;/title&gt;</code>: Tarayıcı sekmesinde görünen başlıktır. Bunu <code>&lt;title&gt;Benim İlk Sitem&lt;/title&gt;</code> olarak değiştirelim.</li>
+                <li><code>&lt;body&gt;</code>: Sayfada gördüğün *her şey* (yazılar, resimler, butonlar) bu etiketin içine yazılır. Bizim tüm işimiz burayla.</li>
+            </ul>
+
+            <h3>Adım 2.2: Sayfaya İçerik Ekleme</h3>
+            <p>Şimdi <code>&lt;body&gt;</code> etiketinin içini, sitemizin içeriğiyle dolduralım. Aşağıdaki kodları kopyalayıp <code>&lt;body&gt;</code> ve <code>&lt;/body&gt;</code> etiketlerinin arasına yapıştır.</p>
+
+            <pre><code>    &lt;h1 id="ana-baslik"&gt;Merhaba Dünya!&lt;/h1&gt;
+    &lt;p&gt;Bu benim web geliştirmeyi öğrenirken yaptığım ilk site.&lt;/p&gt;
+
+    &lt;h2&gt;Öğrendiklerim&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;HTML: Sayfa iskeleti&lt;/li&gt;
+        &lt;li&gt;CSS: Sayfa stili&lt;/li&gt;
+        &lt;li&gt;JavaScript: Sayfa interaktifliği&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Harekete Geç!&lt;/h2&gt;
+    &lt;button id="mesaj-butonu"&gt;Bana Tıkla!&lt;/button&gt;</code></pre>
+
+            <h3>Adım 2.3: Sayfayı Tarayıcıda Açma (Live Server)</h3>
+            <p>Dosyanı kaydet (<code>Ctrl+S</code> veya <code>Cmd+S</code>). Şimdi <code>index.html</code> dosyanın üzerinde sağ tıkla ve **"Open with Live Server"** seçeneğine tıkla.</p>
+            <p>Tebrikler! Tarayıcın açıldı ve ilk web sayfan karşında. Henüz çirkin görünüyor, ama çalışıyor. Şimdi onu güzelleştirme zamanı.</p>
+            <hr>
+        </div>
+
+        <div class="content-section active" data-topic="bolum3">
+            <h2>Bölüm 3: CSS ile Sayfayı Şekillendirme</h2>
+            <p>CSS (Cascading Style Sheets), iskeletimizi giydirmemizi sağlar. Renkler, yazı tipleri, hizalama, boşluklar... Hepsi CSS ile kontrol edilir.</p>
+
+            <h3>Adım 3.1: CSS Dosyasını HTML'e Bağlamak</h3>
+            <p>CSS kodlarını doğrudan HTML içine yazabilirdik (inline style) ama bu çok dağınık ve kötü bir yöntemdir. Bunun yerine tüm stillerimizi <code>style.css</code> dosyasında tutacağız.</p>
+            <p>Peki HTML, bu CSS dosyasını kullanacağını nereden bilecek? Biz söyleyeceğiz. <code>index.html</code> dosyana geri dön ve aşağıdaki <code>&lt;link&gt;</code> etiketini <code>&lt;head&gt;</code> bölümünün içine (<code>&lt;title&gt;</code> etiketinin hemen altına) ekle.</p>
+
+            <pre><code>&lt;head&gt;
+    ...
+    &lt;title&gt;Benim İlk Sitem&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt; &lt;!-- BU SATIRI EKLE --&gt;
+&lt;/head&gt;</code></pre>
+            <p>Bu satır, tarayıcıya "Bu bir stil dosyasıdır, adı da style.css'tir. Git ve onu yükle." der.</p>
+
+            <h3>Adım 3.2: İlk CSS Kuralımız (Seçici, Özellik, Değer)</h3>
+            <p>Şimdi <code>style.css</code> dosyasına tıkla. Bir CSS kuralı 3 bölümden oluşur:
+                <br><code>secici { ozellik: deger; }</code></p>
+            <p>Sayfamızın tamamını etkileyerek başlayalım. <code>body</code> etiketini seçelim ve ona bir arkaplan rengi ile daha okunaklı bir yazı tipi verelim.</p>
+            <pre><code>/* Sayfanın tamamına etki eden genel stiller */
+body {
+    background-color: #f4f4f4; /* Çok açık bir gri arkaplan */
+    font-family: Arial, sans-serif; /* Modern, tırnaksız bir yazı tipi */
+    line-height: 1.6; /* Satır aralığını artırarak okunabilirliği sağlar */
+    padding: 20px; /* İçeriği ekranın kenarlarından uzaklaştırır */
+}</code></pre>
+            <p>Dosyayı kaydettiğin anda (<code>Ctrl+S</code>), Live Server sayesinde tarayıcının anında değiştiğini göreceksin. Sihir gibi!</p>
+
+            <h3>Adım 3.3: Sayfayı Güzelleştirelim</h3>
+            <p>Şimdi diğer elemanlara da stil verelim. Aşağıdaki kodları <code>style.css</code> dosyana (<code>body</code> kuralının altına) ekle.</p>
+            <pre><code>/* Sadece h1 ve h2 başlıklarını seçer */
+h1, h2 {
+    color: #333; /* Koyu gri bir başlık rengi */
+}
+
+/* Tüm liste elemanlarının başındaki noktayı kaldırır */
+ul {
+    list-style-type: none; /* Madde imlerini kaldırır */
+    padding: 0;
+}
+
+/* Buton için özel stil */
+button {
+    background-color: #007acc; /* Güzel bir mavi arkaplan */
+    color: white; /* Beyaz yazı rengi */
+    padding: 10px 15px; /* İç boşluk (butonu büyütür) */
+    border: none; /* Çirkin varsayılan kenarlığı kaldırır */
+    border-radius: 5px; /* Kenarları yuvarlatır */
+    cursor: pointer; /* Üzerine gelince fare imlecini el yapar */
+}
+
+/* Butonun üzerine gelince (hover) rengini biraz değiştir */
+button:hover {
+    background-color: #005f99;
+}</code></pre>
+            <p>Kaydet ve tarayıcına bak. Siten artık çok daha profesyonel görünüyor! Sadece bir eksiğimiz kaldı: Buton çalışmıyor.</p>
+            <hr>
+        </div>
+
+        <div class="content-section active" data-topic="bolum4">
+            <h2>Bölüm 4: JavaScript ile İnteraktiflik</h2>
+            <p>JavaScript (JS), sayfamıza hayat verir. Kullanıcı bir butona tıkladığında ne olacağını, bir form doldurulduğunda ne yapılacağını JS ile belirleriz. O, sitemizin "beynidir".</p>
+
+            <h3>Adım 4.1: JavaScript Dosyasını Bağlamak</h3>
+            <p>Tıpkı CSS gibi, JS kodunu da ayrı bir dosyada tutacağız. Ve tıpkı CSS gibi, onu da HTML'e bağlamamız gerekiyor.</p>
+            <p><strong>ÇOK ÖNEMLİ:</strong> <code>&lt;script&gt;</code> etiketi, CSS'in aksine <code>&lt;head&gt;</code> içine *değil*, <code>&lt;body&gt;</code> etiketinin **kapanışından hemen önceye** (en alta) konur.</p>
+            <p>Neden? Çünkü JS, HTML elementlerini (buton, başlık vb.) manipüle edecektir. Tarayıcının, JS kodunu okumadan önce o HTML elementlerini ekrana çizmiş olduğundan emin olmak isteriz. Eğer script'i en üste koyarsak, JS çalışır, butonu arar ama buton henüz çizilmediği için hata verir.</p>
+            <p><code>index.html</code> dosyanın en altına git ve şu satırı ekle:</p>
+            <pre><code>    ...
+    &lt;button id="mesaj-butonu"&gt;Bana Tıkla!&lt;/button&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- BU SATIRI EKLE --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h3>Adım 4.2: İnteraktifliğin 3 Adımı (Seç, Dinle, Değiştir)</h3>
+            <p>Yapacağımız şey basit: Butona tıklandığında, <code>&lt;h1&gt;</code> başlığının metnini değiştireceğiz. JavaScript'te bu her zaman 3 adımlı bir süreçtir:</p>
+            <ol>
+                <li><strong>Seç:</strong> Değiştireceğimiz veya dinleyeceğimiz HTML elementlerini seç.</li>
+                <li><strong>Dinle:</strong> Bir olayın (örn: 'tıklama') gerçekleşmesini bekle.</li>
+                <li><strong>Değiştir:</strong> Olay gerçekleştiğinde, bir eylem yap (örn: metni değiştir).</li>
+            </ol>
+            <p>Şimdi <code>script.js</code> dosyana tıkla ve içine aşağıdaki kodları yaz:</p>
+
+            <pre><code>// 1. ADIM: HTML'deki elementleri ID'leri ile YAKALA (SEÇ)
+// "document" tüm HTML sayfasını temsil eder.
+// getElementById metodu, verdiğimiz ID'ye sahip elementi bulur.
+
+const mesajButonu = document.getElementById('mesaj-butonu');
+const anaBaslik = document.getElementById('ana-baslik');
+
+
+// 2. ADIM: Butona bir 'tıklama' dinleyicisi ekle (DİNLE)
+// 'click' olayı gerçekleştiğinde, function() içindeki kodları çalıştır.
+
+mesajButonu.addEventListener('click', function() {
+
+    // 3. ADIM: Olay gerçekleştiğinde, başlığın metnini DEĞİŞTİR
+    anaBaslik.textContent = 'Harika! JavaScript öğreniyorsun!';
+
+    // Bonus: Başlığın rengini de değiştirelim
+    anaBaslik.style.color = '#007acc';
+});
+</code></pre>
+            <p>Dosyayı kaydet. Şimdi tarayıcına git ve butona tıkla. Başlığın sihirli bir şekilde değiştiğini göreceksin!</p>
+            <hr>
+        </div>
+
+        <div class="content-section active" data-topic="bolum5">
+            <h2>Tebrikler ve Sonraki Adımlar</h2>
+            <p>Harika bir iş çıkardın! Şu an elinde HTML (iskelet), CSS (stil) ve JavaScript (beyin) ile çalışan, tam fonksiyonlu bir mini web projesi var. Web geliştirmenin temellerini attın.</p>
+            <p>Bu sadece bir başlangıç. Kendini daha da geliştirmek için sitemizdeki diğer detaylı bölümleri incelemeye başlayabilirsin:</p>
+            <ul>
+                <li><strong><a href="html.html">HTML</a>:</strong> Daha fazla etiket öğren (resimler <code>&lt;img&gt;</code>, tablolar <code>&lt;table&gt;</code>, formlar <code>&lt;form&gt;</code>...).</li>
+                <li><strong><a href="css.html">CSS</a>:</strong> Daha karmaşık tasarımlar yap (Flexbox, Grid, animasyonlar...).</li>
+                <li><strong><a href="js.html">JavaScript</a>:</strong> Daha gelişmiş özellikler ekle (form kontrolü, veri alma...).</li>
+            </ul>
+            <p>Unutma, en iyi öğrenme yolu sürekli pratik yapmak ve bozmaktan korkmamaktır. Bol bol kod yaz!</p>
+
+            <a href="index.html" class="home-button" style="display:inline-block; margin-top:20px; text-decoration:none; background:var(--primary-color); color:white; padding:10px 15px; border-radius:8px;">Ana Sayfaya Dön</a>
+        </div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
